@@ -8,8 +8,8 @@
 
     <solid android:color="@color/colorRippleL" />
     <corners
-        android:bottomLeftRadius="24dp"
-        android:bottomRightRadius="24dp"
-        android:topLeftRadius="24dp"
-        android:topRightRadius="24dp" />
+        android:bottomLeftRadius="@dimen/button_radius"
+        android:bottomRightRadius="@dimen/button_radius"
+        android:topLeftRadius="@dimen/button_radius"
+        android:topRightRadius="@dimen/button_radius" />
 </shape>
