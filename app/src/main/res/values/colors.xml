@@ -2,5 +2,7 @@
 <resources>
     <color name="colorPrimary">#ffffff</color>
     <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#4DB5AB</color>
+    <color name="colorAccent">#4db6ac</color>
+    <color name="colorStatusBar">#26a69a</color>
+    <color name="colorTrans">#004db6ac</color>
 </resources>

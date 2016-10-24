@@ -40,6 +40,8 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile 'com.github.nitrico.lastadapter:lastadapter:1.2.1'
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    compile 'com.github.GrenderG:Prefs:1.2'
+    compile 'com.github.bumptech.glide:glide:3.7.0'
 }
 repositories {
     mavenCentral()
