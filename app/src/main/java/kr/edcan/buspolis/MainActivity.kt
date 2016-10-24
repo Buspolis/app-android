@@ -4,13 +4,15 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.view.Menu
+import android.view.View
+import android.widget.Toast
 import com.github.nitrico.lastadapter.LastAdapter
 import kotlinx.android.synthetic.main.activity_main.*
 import kr.edcan.buspolis.model.BusStop
 import kr.edcan.buspolis.model.SearchItem
 import java.util.*
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), LastAdapter.OnClickListener {
 
     var sList = ArrayList<Any>()
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -52,11 +54,16 @@ class MainActivity : AppCompatActivity() {
         LastAdapter.with(sList, BR.item)
                 .map<SearchItem>(R.layout.item_search)
                 .map<BusStop>(R.layout.content_main_header)
+                .onClickListener(this)
                 .into(mainRecycler)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu_main, menu);
         return super.onCreateOptionsMenu(menu)
+    }
+    override fun onClick(item: Any, view: View, type: Int, position: Int) {
+        Toast.makeText(applicationContext, "Selected", Toast.LENGTH_SHORT).show()
+//        throw UnsupportedOperationException("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 }

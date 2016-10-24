@@ -3,7 +3,8 @@
     <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="#FBFBFB">
 
         <android.support.design.widget.AppBarLayout
             android:layout_width="match_parent"
@@ -21,6 +22,8 @@
                 android:layout_height="?attr/actionBarSize"
                 android:layout_marginBottom="5dp"
                 android:layout_marginTop="5dp"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
                 android:paddingBottom="5dp"
                 android:paddingLeft="12dp"
                 android:paddingRight="12dp"
@@ -38,19 +41,20 @@
                     android:background="@null"
                     android:gravity="center_vertical"
                     android:hint="@string/search_hint"
-                    android:paddingLeft="@dimen/searchbar_margin"
+                    android:paddingLeft="@dimen/element_margin"
                     android:textColor="@color/colorAccent"
                     android:textColorHint="@color/colorTextSub"
                     android:textSize="@dimen/default_text" />
 
                 <ImageView
-                    android:paddingRight="@dimen/searchbar_margin"
-                    android:layout_centerVertical="true"
                     android:id="@+id/imageView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
                     android:padding="@dimen/text_padding"
+                    android:layout_marginRight="12dp"
+
                     android:src="@drawable/ic_main_search" />
             </RelativeLayout>
         </android.support.design.widget.AppBarLayout>
