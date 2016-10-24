@@ -4,5 +4,6 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#4db6ac</color>
     <color name="colorStatusBar">#26a69a</color>
-    <color name="colorTrans">#004db6ac</color>
+    <color name="colorRippleD">#99000000</color>
+    <color name="colorRippleL">#bbffffff</color>
 </resources>
