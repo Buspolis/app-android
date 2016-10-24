@@ -1,5 +1,6 @@
 package kr.edcan.buspolis
 
+import android.Manifest
 import android.graphics.Color
 import android.os.Bundle
 import android.support.v4.content.ContextCompat
@@ -7,10 +8,13 @@ import android.support.v7.app.AppCompatActivity
 import android.view.WindowManager
 import android.view.animation.AnimationUtils
 import com.bumptech.glide.Glide
+import com.github.jksiezni.permissive.Permissive
 import es.dmoral.prefs.Prefs
 import kotlinx.android.synthetic.main.activity_intro.*
 import kr.edcan.u_stream.adapter.IntroPagerAdapter
+import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.textColor
+import org.jetbrains.anko.toast
 
 class IntroActivity : AppCompatActivity() {
 
@@ -53,7 +57,15 @@ class IntroActivity : AppCompatActivity() {
                 if(introPager.currentItem == 1){
                     introNext.text = getString(R.string.set_permission)
                 }else if(introPager.currentItem == 2){
-                    //TODO 퍼미션
+                    Permissive.Request(Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION)
+                            .whenPermissionsGranted {
+                                Prefs.with(this).writeBoolean("isFirst", false)
+                                startActivity<MainActivity>()
+                                overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
+                                finish()
+                            }
+                            .whenPermissionsRefused({ toast(getString(R.string.perm_denied)) })
+                            .execute(this)
                 }
                 introPager.setCurrentItem(introPager.currentItem+1, true)
             }

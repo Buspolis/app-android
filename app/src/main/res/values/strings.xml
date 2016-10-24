@@ -9,4 +9,5 @@
     <!-- 영문 이 아래는 번역 요구-->
     <string name="next">Next</string>
     <string name="set_permission">Set Permission</string>
+    <string name="perm_denied">If you do not have permission, the app can not be used.</string>
 </resources>
