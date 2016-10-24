@@ -3,6 +3,7 @@ package kr.edcan.buspolis
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
+import android.view.Menu
 import com.github.nitrico.lastadapter.LastAdapter
 import kotlinx.android.synthetic.main.activity_main.*
 import kr.edcan.buspolis.model.BusStop
@@ -12,7 +13,6 @@ import java.util.*
 class MainActivity : AppCompatActivity() {
 
     var sList = ArrayList<Any>()
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -53,5 +53,10 @@ class MainActivity : AppCompatActivity() {
                 .map<SearchItem>(R.layout.item_search)
                 .map<BusStop>(R.layout.content_main_header)
                 .into(mainRecycler)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_main, menu);
+        return super.onCreateOptionsMenu(menu)
     }
 }

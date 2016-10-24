@@ -6,4 +6,5 @@
     <color name="colorStatusBar">#26a69a</color>
     <color name="colorRippleD">#99000000</color>
     <color name="colorRippleL">#bbffffff</color>
+    <color name="colorTextSub">#DEDEDE</color>
 </resources>
