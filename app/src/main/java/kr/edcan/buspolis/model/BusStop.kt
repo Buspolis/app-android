@@ -17,5 +17,5 @@ class BusStop{
     fun getName(lang: String) : String{
         return name[lang] as String
     }
-    fun getLocalName() = name[""] //TODO 자신이 설정한 주 언어 구분자
+    fun getLocalName() = name["ko"] //TODO 자신이 설정한 주 언어 구분자
 }

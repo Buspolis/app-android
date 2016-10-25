@@ -12,7 +12,7 @@ import kr.edcan.buspolis.model.BusStop
 import kr.edcan.buspolis.model.SearchItem
 import java.util.*
 
-class MainActivity : AppCompatActivity(), LastAdapter.OnClickListener {
+class MainActivity : AppCompatActivity(){
 
     var sList = ArrayList<Any>()
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,8 +30,7 @@ class MainActivity : AppCompatActivity(), LastAdapter.OnClickListener {
     private fun setLayout() {
         setSupportActionBar(toolbar)
 
-        sList.add(BusStop(mapOf("ko" to "버스 정류장"), "01-023", "내 마음속"))
-        sList.add(SearchItem("0"))
+        sList.add(BusStop(mapOf("ko" to "신설동역"), "01-023", "내 마음속"))
         sList.add(SearchItem("0"))
         sList.add(SearchItem("1"))
         sList.add(SearchItem("2"))
@@ -54,16 +53,16 @@ class MainActivity : AppCompatActivity(), LastAdapter.OnClickListener {
         LastAdapter.with(sList, BR.item)
                 .map<SearchItem>(R.layout.item_search)
                 .map<BusStop>(R.layout.content_main_header)
-                .onClickListener(this)
+                .onClickListener(object : LastAdapter.OnClickListener {
+                    override fun onClick(item: Any, view: View, type: Int, position: Int) {
+                        Toast.makeText(applicationContext, "Selected", Toast.LENGTH_SHORT).show()
+                    }
+                })
                 .into(mainRecycler)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu_main, menu);
         return super.onCreateOptionsMenu(menu)
-    }
-    override fun onClick(item: Any, view: View, type: Int, position: Int) {
-        Toast.makeText(applicationContext, "Selected", Toast.LENGTH_SHORT).show()
-//        throw UnsupportedOperationException("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 }

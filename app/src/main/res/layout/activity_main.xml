@@ -19,15 +19,10 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                android:layout_marginBottom="5dp"
-                android:layout_marginTop="5dp"
+                android:layout_height="48dp"
+                android:layout_margin="@dimen/activity_horizontal_margin"
                 android:focusable="true"
-                android:focusableInTouchMode="true"
-                android:paddingBottom="5dp"
-                android:paddingLeft="12dp"
-                android:paddingRight="12dp"
-                android:paddingTop="5dp">
+                android:focusableInTouchMode="true">
                 <!--TODO 검색창-->
 
                 <kr.edcan.buspolis.view.CartaTagView
@@ -52,8 +47,8 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
-                    android:padding="@dimen/text_padding"
                     android:layout_marginRight="12dp"
+                    android:padding="@dimen/text_padding"
 
                     android:src="@drawable/ic_main_search" />
             </RelativeLayout>
