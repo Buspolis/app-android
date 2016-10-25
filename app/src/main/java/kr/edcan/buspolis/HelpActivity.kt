@@ -13,5 +13,6 @@ class HelpActivity : AppCompatActivity() {
 
         helpKor.text = "${intent.getStringExtra("name")} 버스 정류장은 어디에 있나요?"
         helpRomaji.text = KoreanRomanizer.romanize(helpKor.text.toString())
+        icBack.setOnClickListener { finish() }
     }
 }
