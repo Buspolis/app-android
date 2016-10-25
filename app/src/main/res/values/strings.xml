@@ -28,4 +28,5 @@
     <string name="search_history">SEARCH HISTORY</string>
     <string name="refresh">Refresh Location</string>
     <string name="help">I want people\'s help</string>
+    <string name="show_it">Please show or speak this sentence\nto other people.</string>
 </resources>

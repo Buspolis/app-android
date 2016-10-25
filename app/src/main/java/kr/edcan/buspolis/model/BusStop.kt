@@ -1,7 +1,8 @@
 package kr.edcan.buspolis.model
 
-import android.content.Context
-import kotlin.properties.Delegates
+import android.view.View
+import kr.edcan.buspolis.HelpActivity
+import org.jetbrains.anko.startActivity
 
 /**
  * Created by LNTCS on 2016-10-23.
@@ -17,4 +18,7 @@ class BusStop{
         this.address = address
     }
 
+    var helpListener = View.OnClickListener{
+        it.context.startActivity<HelpActivity>("name" to name.ko)
+    }
 }
