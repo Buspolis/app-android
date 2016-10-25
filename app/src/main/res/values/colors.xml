@@ -7,4 +7,5 @@
     <color name="colorRippleD">#99000000</color>
     <color name="colorRippleL">#bbffffff</color>
     <color name="colorTextSub">#DEDEDE</color>
+    <color name="colorShadow">#22222222</color>
 </resources>
