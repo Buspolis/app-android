@@ -5,11 +5,11 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.view.Menu
 import android.view.View
-import android.widget.Toast
 import com.github.nitrico.lastadapter.LastAdapter
 import kotlinx.android.synthetic.main.activity_main.*
 import kr.edcan.buspolis.model.BusStop
 import kr.edcan.buspolis.model.SearchItem
+import org.jetbrains.anko.toast
 import java.util.*
 
 class MainActivity : AppCompatActivity(){
@@ -55,7 +55,9 @@ class MainActivity : AppCompatActivity(){
                 .map<BusStop>(R.layout.content_main_header)
                 .onClickListener(object : LastAdapter.OnClickListener {
                     override fun onClick(item: Any, view: View, type: Int, position: Int) {
-                        Toast.makeText(applicationContext, "Selected", Toast.LENGTH_SHORT).show()
+                        if(position == 0) return
+                        item as SearchItem
+                        toast(item.keyword)
                     }
                 })
                 .into(mainRecycler)

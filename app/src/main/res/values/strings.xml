@@ -16,5 +16,5 @@
     <string name="more">More</string>
     <string name="search_history">SEARCH HISTORY</string>
     <string name="refresh">Refresh Location</string>
-    <string name="help">I want people's help</string>
+    <string name="help">I want people\'s help</string>
 </resources>

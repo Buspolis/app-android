@@ -55,6 +55,10 @@ class IntroActivity : AppCompatActivity() {
                 introNext.textColor = ContextCompat.getColor(this, R.color.colorAccent)
             }else{
                 if(introPager.currentItem == 1){
+                    if(android.os.Build.VERSION.SDK_INT <= android.os.Build.VERSION_CODES.LOLLIPOP){
+                        Prefs.with(this).writeBoolean("isFirst", false)
+                        finish()
+                    }
                     introNext.text = getString(R.string.set_permission)
                 }else if(introPager.currentItem == 2){
                     Permissive.Request(Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION)
