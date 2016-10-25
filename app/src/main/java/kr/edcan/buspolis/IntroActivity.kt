@@ -28,8 +28,6 @@ class IntroActivity : AppCompatActivity() {
 
         Glide.with(this).load(R.drawable.bg_start).into(introBg)
 
-        introPager.adapter = IntroPagerAdapter(this)
-
         var langs = arrayOf(langEng, langCn, langJp)
         langs.forEachIndexed { i, view ->
             view.setOnClickListener {
@@ -51,6 +49,7 @@ class IntroActivity : AppCompatActivity() {
             if(isCovered) {
                 isCovered = false
                 Prefs.with(this).write("lang", arrayOf("en","cn","jp")[chkedNum])
+                introPager.adapter = IntroPagerAdapter(this)
                 introCover.startAnimation(AnimationUtils.loadAnimation(this, R.anim.fade_out))
                 introNext.textColor = ContextCompat.getColor(this, R.color.colorAccent)
             }else{

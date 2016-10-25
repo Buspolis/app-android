@@ -1,21 +1,20 @@
 package kr.edcan.buspolis.model
 
+import android.content.Context
+import kotlin.properties.Delegates
+
 /**
  * Created by LNTCS on 2016-10-23.
  */
 class BusStop{
-    var name = mapOf("ko" to "", "en" to "", "jp" to "", "zh" to "")
+    var name = MultiString()
     var code = ""
     var address = ""
 
-    constructor(name: Map<String, String>, code: String, address: String){
+    constructor(name: MultiString, code: String, address: String){
         this.name = name
         this.code = code
         this.address = address
     }
 
-    fun getName(lang: String) : String{
-        return name[lang] as String
-    }
-    fun getLocalName() = name["ko"] //TODO 자신이 설정한 주 언어 구분자
 }

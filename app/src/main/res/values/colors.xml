@@ -8,4 +8,6 @@
     <color name="colorRippleL">#bbffffff</color>
     <color name="colorTextSub">#DEDEDE</color>
     <color name="colorShadow">#22222222</color>
+
+    <color name="textLight">#99ffffff</color>
 </resources>

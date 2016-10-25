@@ -6,6 +6,17 @@
     <string name="cn">中文</string>
     <string name="jp">日本語</string>
 
+
+    <string name="intro_subtitle1_en">Buspolis is bus information application\nfor travel Seoul.</string>
+    <string name="intro_subtitle1_cn">Buspolis 是首尔的旅游巴士信息应用程序。</string>
+    <string name="intro_subtitle1_jp">Buspolis は旅行ソウルのバス情報\nアプリケーションです。</string>
+    <string name="intro_subtitle2_en">Translated Bus stop name to your language.\nYou can search and check bus information to easy!</string>
+    <string name="intro_subtitle2_cn">翻译的巴士站名称为您的语言。\n您可以搜索和检查总线信息容易！</string>
+    <string name="intro_subtitle2_jp">あなたの言語に翻訳されたバス停名。\nあなたが検索し、\n簡単にバス情報を確認することができます！</string>
+    <string name="intro_subtitle3_en">We use your location information for search\nyour around bus stop.</string>
+    <string name="intro_subtitle3_cn">此应用程序使用您的位置信息搜索您的公共汽车站。</string>
+    <string name="intro_subtitle3_jp">このアプリは、\nバス停の周りに検索あなたのためのあなたの位置情報を使用しています。</string>
+
     <!-- 영문 이 아래는 번역 요구-->
     <string name="next">Next</string>
     <string name="set_permission">Set Permission</string>

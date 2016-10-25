@@ -8,6 +8,7 @@ import android.view.View
 import com.github.nitrico.lastadapter.LastAdapter
 import kotlinx.android.synthetic.main.activity_main.*
 import kr.edcan.buspolis.model.BusStop
+import kr.edcan.buspolis.model.MultiString
 import kr.edcan.buspolis.model.SearchItem
 import org.jetbrains.anko.toast
 import java.util.*
@@ -30,7 +31,7 @@ class MainActivity : AppCompatActivity(){
     private fun setLayout() {
         setSupportActionBar(toolbar)
 
-        sList.add(BusStop(mapOf("ko" to "신설동역"), "01-023", "내 마음속"))
+        sList.add(BusStop(MultiString(this, "Gangnam Stn.", "江南站", "カンナム駅", "강남역"), "01-023", "내 마음속"))
         sList.add(SearchItem("0"))
         sList.add(SearchItem("1"))
         sList.add(SearchItem("2"))

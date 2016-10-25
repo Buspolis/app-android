@@ -11,10 +11,10 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="72dp"
-        android:paddingLeft="@dimen/activity_horizontal_margin"
-        android:paddingRight="@dimen/activity_horizontal_margin"
         android:background="?attr/selectableItemBackground"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin">
         <!--TODO 검색 기록 부분 아이템-->
         <!--@{item.keyword}   쓰면 검색어 ㅇㅇ-->
         <View

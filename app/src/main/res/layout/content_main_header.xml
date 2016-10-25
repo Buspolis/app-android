@@ -46,7 +46,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
-                        android:text="@{item.localName}"
+                        android:text="@{item.name.localName}"
                         android:textColor="@android:color/white"
                         android:textSize="36sp" />
                 </LinearLayout>
@@ -60,15 +60,15 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@{item.address}"
-                        android:textColor="@color/colorTextSub"
+                        android:text="@{item.name.ko}"
+                        android:textColor="@color/textLight"
                         android:textSize="@dimen/small_text" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@{item.address}"
-                        android:textColor="@color/colorTextSub"
+                        android:text="@{item.name.engSub}"
+                        android:textColor="@color/textLight"
                         android:textSize="@dimen/small_text" />
 
                 </LinearLayout>
