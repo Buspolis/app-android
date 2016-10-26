@@ -21,7 +21,7 @@
     <string name="next">Next</string>
     <string name="set_permission">Set Permission</string>
     <string name="perm_denied">If you do not have permission, the app can not be used.</string>
-    <string name="search_hint">Bus Number, Bus Stop, Landmarks...</string>
+    <string name="search_hint">Bus Number, Bus Stop...</string>
     <string name="settings">Settings</string>
     <string name="near_bus_stop">NEAR BUS STOP</string>
     <string name="more">More</string>
