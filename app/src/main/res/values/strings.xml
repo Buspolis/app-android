@@ -42,4 +42,5 @@
     <string name="setting_ver">Version</string>
     <string name="setting_email">Contact to Email</string>
     <string name="setting_email_sub">We support your problem</string>
+    <string name="info">Info</string>
 </resources>

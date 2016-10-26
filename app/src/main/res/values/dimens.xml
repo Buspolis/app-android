@@ -15,6 +15,7 @@
     <dimen name="main_padding">8dp</dimen>
     <dimen name="small_margin">4dp</dimen>
 
+    <dimen name="ex_large_text">40sp</dimen>
     <dimen name="label_text">21sp</dimen>
     <dimen name="large_text">18sp</dimen>
     <dimen name="default_text">16sp</dimen>

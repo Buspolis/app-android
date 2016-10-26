@@ -25,7 +25,8 @@
         <activity android:name=".MainActivity" />
         <activity android:name=".IntroActivity" />
         <activity android:name=".HelpActivity" />
-        <activity android:name=".SettingActivity"></activity>
+        <activity android:name=".SettingActivity" />
+        <activity android:name=".BusInfoActivity"></activity>
     </application>
 
 </manifest>

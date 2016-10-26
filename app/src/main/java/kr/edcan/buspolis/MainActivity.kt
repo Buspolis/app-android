@@ -60,6 +60,7 @@ class MainActivity : LocationBaseActivity() {
                         if (position == 0) return
                         item as SearchItem
                         toast(item.keyword)
+                        if(type == R.layout.item_search) startActivity<BusInfoActivity>()
                     }
                 })
                 .into(mainRecycler)
@@ -83,17 +84,19 @@ class MainActivity : LocationBaseActivity() {
     override fun onLocationChanged(location: Location?) {
         Log.e("asdf", location.toString())
     }
+
     override fun onLocationFailed(failType: Int) {
     }
-    override fun getLocationConfiguration() : LocationConfiguration{
-         return LocationConfiguration()
-                    .keepTracking(true)
-                    .askForGooglePlayServices(true)
-                    .setMinAccuracy(200.0f)
-                    .setWaitPeriod(ProviderType.GOOGLE_PLAY_SERVICES, 5 * 1000)
-                    .setWaitPeriod(ProviderType.GPS, 10 * 1000)
-                    .setWaitPeriod(ProviderType.NETWORK, 5 * 1000)
-                    .setGPSMessage("Would you mind to turn GPS on?")
-                    .setRationalMessage("Gimme the permission!")!!
+
+    override fun getLocationConfiguration(): LocationConfiguration {
+        return LocationConfiguration()
+                .keepTracking(true)
+                .askForGooglePlayServices(true)
+                .setMinAccuracy(200.0f)
+                .setWaitPeriod(ProviderType.GOOGLE_PLAY_SERVICES, 5 * 1000)
+                .setWaitPeriod(ProviderType.GPS, 10 * 1000)
+                .setWaitPeriod(ProviderType.NETWORK, 5 * 1000)
+                .setGPSMessage("Would you mind to turn GPS on?")
+                .setRationalMessage("Gimme the permission!")!!
     }
 }
