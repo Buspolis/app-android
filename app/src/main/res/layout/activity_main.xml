@@ -25,16 +25,16 @@
                     android:paddingTop="@dimen/activity_horizontal_margin">
 
                     <TextView
+                        android:id="@+id/toolbarTitle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Where are you going"
                         android:textColor="@color/colorAccent"
                         android:textSize="@dimen/label_text" />
 
                     <TextView
+                        android:id="@+id/toolbarSubtitle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Where are you going?"
                         android:textColor="@color/colorTextSub"
                         android:textSize="@dimen/small_text" />
                 </LinearLayout>

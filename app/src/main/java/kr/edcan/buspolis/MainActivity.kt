@@ -32,6 +32,10 @@ class MainActivity : LocationBaseActivity() {
     private fun setLayout() {
         setSupportActionBar(toolbar)
         title = ""
+        MultiString(this, "Where are you going?", "你去哪里?", "どこに行くの？").let {
+            toolbarTitle.text = it.getLocalName()
+            toolbarSubtitle.text = it.getEngSub()
+        }
         sList.add(BusStop(MultiString(this, "Gangnam Stn.", "江南站", "カンナム駅", "강남역"), "01-023", "내 마음속"))
         sList.add(SearchItem("0"))
         sList.add(SearchItem("1"))

@@ -13,11 +13,10 @@ import kotlinx.android.synthetic.main.activity_setting.*
 import kr.edcan.buspolis.databinding.ContentSettingsHeaderBinding
 import kr.edcan.buspolis.databinding.ItemSettingsBinding
 import kr.edcan.buspolis.model.ListContent
-import org.jetbrains.anko.toast
+import org.jetbrains.anko.selector
 import java.util.*
 
-class SettingActivity : AppCompatActivity() {
-
+class SettingActivity : AppCompatActivity(), LastAdapter.OnClickListener {
     var arrayList: ArrayList<Any> = ArrayList()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -69,11 +68,7 @@ class SettingActivity : AppCompatActivity() {
                         }
                     }
                 })
-                .onClickListener(object: LastAdapter.OnClickListener{
-                    override fun onClick(item: Any, view: View, type: Int, position: Int) {
-                        toast(position.toString())
-                    }
-                })
+                .onClickListener(this)
                 .map<String>(R.layout.content_settings_header)
                 .map<ListContent>(R.layout.item_settings)
                 .into(settingsRecycler)
@@ -94,4 +89,27 @@ class SettingActivity : AppCompatActivity() {
                 "jp" -> "日本語"
                 else -> ""
             }
+    override fun onClick(item: Any, view: View, type: Int, position: Int) {
+        when(position){
+            1 ->{ //auto
+                selector(getString(R.string.setting_refresh), listOf("15s", "30s", "60s"), onClick = {
+                    //TODO 수정
+                })
+            }
+            2 ->{ //lang
+                selector(getString(R.string.setting_refresh), listOf("ENG", "中文", "日本語"), onClick = {
+                    //TODO 수정
+                })
+            }
+            4 ->{ //ToS
+
+            }
+            5 ->{ //OSL
+
+            }
+            8 ->{ //contact
+
+            }
+        }
+    }
 }
