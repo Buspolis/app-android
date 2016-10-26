@@ -45,7 +45,7 @@ dependencies {
     compile 'com.github.jksiezni.permissive:permissive:0.1'
     compile 'com.android.support:cardview-v7:24.2.1'
     compile 'com.github.dmytrodanylyk.shadow-layout:library:1.0.3'
-
+    compile 'com.yayandroid:LocationManager:1.1.4'
 }
 repositories {
     mavenCentral()

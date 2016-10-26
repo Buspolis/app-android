@@ -1,16 +1,18 @@
 package kr.edcan.buspolis
 
 import android.databinding.DataBindingUtil
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v4.content.ContextCompat
+import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.view.MenuItem
 import android.view.View
-import kr.edcan.buspolis.model.ListContent
 import com.github.nitrico.lastadapter.LastAdapter
+import es.dmoral.prefs.Prefs
 import kotlinx.android.synthetic.main.activity_setting.*
 import kr.edcan.buspolis.databinding.ContentSettingsHeaderBinding
 import kr.edcan.buspolis.databinding.ItemSettingsBinding
+import kr.edcan.buspolis.model.ListContent
 import org.jetbrains.anko.toast
 import java.util.*
 
@@ -22,8 +24,8 @@ class SettingActivity : AppCompatActivity() {
         setContentView(R.layout.activity_setting)
         setSupportActionBar(toolbar)
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
-        toolbar.setTitleTextColor(resources.getColor(R.color.colorAccent))
-        supportActionBar!!.title = "Settings"
+        toolbar.setTitleTextColor(ContextCompat.getColor(this, R.color.colorAccent))
+        title = "Settings"
         setLayout()
     }
 
@@ -32,12 +34,25 @@ class SettingActivity : AppCompatActivity() {
             it.orientation = LinearLayoutManager.VERTICAL
             settingsRecycler.layoutManager = it
         }
-        arrayList.add("General")
-        arrayList.add(ListContent("Auto Refresh", "Set Auto Refresh Time", "30s"))
-        arrayList.add(ListContent("Auto Refresh", "Set Auto Refresh Time", "30s"))
-        arrayList.add(ListContent("Auto Refresh", "Set Auto Refresh Time", "30s"))
-        arrayList.add(ListContent("Auto Refresh", "Set Auto Refresh Time", "30s"))
-        arrayList.add(ListContent("Auto Refresh", "", "30s"))
+
+        arrayList.run {
+            add(getString(R.string.setting_general))
+            add(ListContent(getString(R.string.setting_refresh),
+                    getString(R.string.setting_refresh_sub),
+                    "${Prefs.with(this@SettingActivity).readInt("autoRef", 30)}s"))
+            add(ListContent(getString(R.string.setting_lang),
+                    getString(R.string.setting_lang_sub),
+                    getLangString()))
+            add(getString(R.string.setting_term))
+            add(ListContent(getString(R.string.setting_tos)))
+            add(ListContent(getString(R.string.setting_osl)))
+            add(getString(R.string.setting_about))
+            add(ListContent(getString(R.string.setting_ver),
+                    "",getVersion()))
+            add(ListContent(getString(R.string.setting_email),
+                    getString(R.string.setting_email_sub)))
+        }
+
         LastAdapter.with(arrayList, BR.item)
                 .onBindListener(object: LastAdapter.OnBindListener{
                     override fun onBind(item: Any, view: View, type: Int, position: Int) {
@@ -64,10 +79,19 @@ class SettingActivity : AppCompatActivity() {
                 .into(settingsRecycler)
     }
 
+    fun  getVersion() = packageManager.getPackageInfo(packageName, 0).versionName!!
+
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         when (item!!.itemId) {
             android.R.id.home -> finish()
         }
         return super.onOptionsItemSelected(item)
     }
+    fun getLangString() =
+            when(Prefs.with(this).read("lang")){
+                "en" -> "ENG"
+                "cn" -> "中文"
+                "jp" -> "日本語"
+                else -> ""
+            }
 }

@@ -1,7 +1,5 @@
 <layout>
-
     <data>
-
         <variable
             name="item"
             type="kr.edcan.buspolis.model.ListContent" />

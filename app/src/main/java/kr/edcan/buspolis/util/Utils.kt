@@ -9,4 +9,8 @@ import es.dmoral.prefs.Prefs
 
 object Utils{
     fun lang(context: Context) = Prefs.with(context).read("lang")!!
+
+    fun getNearStop(){
+        
+    }
 }

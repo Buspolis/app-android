@@ -1,39 +1,37 @@
 package kr.edcan.buspolis
 
+import android.location.Location
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import com.github.nitrico.lastadapter.LastAdapter
+import com.yayandroid.locationmanager.LocationBaseActivity
+import com.yayandroid.locationmanager.LocationConfiguration
+import com.yayandroid.locationmanager.constants.ProviderType
 import kotlinx.android.synthetic.main.activity_main.*
 import kr.edcan.buspolis.model.BusStop
 import kr.edcan.buspolis.model.MultiString
 import kr.edcan.buspolis.model.SearchItem
+import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.toast
 import java.util.*
-import org.jetbrains.anko.startActivity
 
-
-class MainActivity : AppCompatActivity() {
+class MainActivity : LocationBaseActivity() {
 
     var sList = ArrayList<Any>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setLayout()
-//     TODO 영어일 때 기존에 영어 있던 부분 지우는 함수
-        hideLayout()
-    }
-
-    private fun hideLayout() {
-
+        getLocation()
     }
 
     private fun setLayout() {
         setSupportActionBar(toolbar)
-        supportActionBar!!.title = ""
+        title = ""
         sList.add(BusStop(MultiString(this, "Gangnam Stn.", "江南站", "カンナム駅", "강남역"), "01-023", "내 마음속"))
         sList.add(SearchItem("0"))
         sList.add(SearchItem("1"))
@@ -80,5 +78,22 @@ class MainActivity : AppCompatActivity() {
 
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    override fun onLocationChanged(location: Location?) {
+        Log.e("asdf", location.toString())
+    }
+    override fun onLocationFailed(failType: Int) {
+    }
+    override fun getLocationConfiguration() : LocationConfiguration{
+         return LocationConfiguration()
+                    .keepTracking(true)
+                    .askForGooglePlayServices(true)
+                    .setMinAccuracy(200.0f)
+                    .setWaitPeriod(ProviderType.GOOGLE_PLAY_SERVICES, 5 * 1000)
+                    .setWaitPeriod(ProviderType.GPS, 10 * 1000)
+                    .setWaitPeriod(ProviderType.NETWORK, 5 * 1000)
+                    .setGPSMessage("Would you mind to turn GPS on?")
+                    .setRationalMessage("Gimme the permission!")!!
     }
 }

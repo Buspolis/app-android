@@ -14,4 +14,6 @@ class ListContent(title: String, content: String, item: String) {
         this.title = title
         this.item = item
     }
+    constructor(title: String): this(title,"","")
+    constructor(title: String, content: String): this(title,content,"")
 }

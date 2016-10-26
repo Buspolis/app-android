@@ -29,4 +29,17 @@
     <string name="refresh">Refresh Location</string>
     <string name="help">I want people\'s help</string>
     <string name="show_it">Please show or speak this sentence\nto other people.</string>
+
+    <string name="setting_general">General</string>
+    <string name="setting_refresh">Auto Refresh</string>
+    <string name="setting_refresh_sub">Set Auto Refresh Time</string>
+    <string name="setting_lang">Language</string>
+    <string name="setting_lang_sub">Set Language for display Bus Stop info</string>
+    <string name="setting_term">Terms &amp; Policies</string>
+    <string name="setting_tos">Terms of Service</string>
+    <string name="setting_osl">Open Source License</string>
+    <string name="setting_about">About</string>
+    <string name="setting_ver">Version</string>
+    <string name="setting_email">Contact to Email</string>
+    <string name="setting_email_sub">We support your problem</string>
 </resources>
