@@ -45,4 +45,7 @@
     <string name="setting_email_sub">We support your problem</string>
     <string name="info">Info</string>
     <string name="bus_fare">Bus fare</string>
+    <string name="bus_route">Bus Route</string>
+    <string name="service_hours">Service Hours</string>
+    <string name="to_last_stop">to last stop</string>
 </resources>
