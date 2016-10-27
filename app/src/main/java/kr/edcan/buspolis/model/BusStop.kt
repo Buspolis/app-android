@@ -12,10 +12,15 @@ class BusStop{
     var code = ""
     var address = ""
 
+
     constructor(name: MultiString, code: String, address: String){
         this.name = name
         this.code = code
         this.address = address
+    }
+
+    constructor(name: MultiString) {
+        this.name = name
     }
 
     var helpListener = View.OnClickListener{

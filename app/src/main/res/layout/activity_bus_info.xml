@@ -1,68 +1,101 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context="kr.edcan.buspolis.BusInfoActivity">
-    <!-- 헤더 -->
-    <!-- TODO CollapsingToolbarLayout 적용-->
-    <RelativeLayout
-        android:id="@+id/headerBackground"
+<layout>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/app_bar_height"
-        android:background="#54A953">
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context="kr.edcan.buspolis.BusInfoActivity">
+        <!-- 헤더 -->
+        <!-- TODO CollapsingToolbarLayout 적용-->
+        <RelativeLayout
+            android:id="@+id/headerBackground"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/app_bar_height"
+            android:background="#54A953">
 
-        <ImageView
-            android:id="@+id/icBack"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:clickable="true"
-            android:padding="@dimen/activity_horizontal_margin"
-            android:src="@drawable/ic_back" />
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_margin="@dimen/activity_horizontal_margin"
-            android:orientation="vertical">
-
-            <TextView
+            <ImageView
+                android:id="@+id/icBack"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="752"
-                android:textColor="@android:color/white"
-                android:textSize="@dimen/ex_large_text"
-                android:textStyle="bold" />
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:clickable="true"
+                android:padding="@dimen/activity_horizontal_margin"
+                android:src="@drawable/ic_back" />
 
-            <TextView
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="구산동 -> 총신대"
-                android:textColor="@color/textLight"
-                android:textSize="@dimen/large_text"
-                android:textStyle="bold" />
-        </LinearLayout>
+                android:layout_alignParentBottom="true"
+                android:layout_margin="@dimen/activity_horizontal_margin"
+                android:orientation="vertical">
 
-        <kr.edcan.buspolis.view.CartaTagView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentRight="true"
-            android:layout_margin="@dimen/activity_horizontal_margin"
-            android:paddingBottom="8dp"
-            android:paddingLeft="40dp"
-            android:paddingRight="40dp"
-            android:paddingTop="8dp"
-            android:text="@string/info"
-            android:textSize="@dimen/default_text"
-            app:themeColor="@android:color/white" />
-    </RelativeLayout>
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/busInfoRecyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
-</LinearLayout>
+                <TextView
+                    android:id="@+id/busNumber"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="752"
+                    android:textColor="@android:color/white"
+                    android:textSize="@dimen/ex_large_text"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/busRoute"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="구산동 -> 총신대"
+                    android:textColor="@color/textLight"
+                    android:textSize="@dimen/large_text"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <kr.edcan.buspolis.view.CartaTagView
+                android:id="@+id/busInfo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:layout_margin="@dimen/activity_horizontal_margin"
+                android:paddingBottom="8dp"
+                android:paddingLeft="40dp"
+                android:paddingRight="40dp"
+                android:paddingTop="8dp"
+                android:text="@string/info"
+                android:textSize="@dimen/default_text"
+                app:themeColor="@android:color/white" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/busInfoRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="60dp"
+                tools:listitem="@layout/item_bus_info"
+                tools:text="asdf" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_alignParentBottom="true"
+                android:background="@color/colorAccent">
+
+                <kr.edcan.buspolis.view.CartaTagView
+                    android:id="@+id/busFare"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:paddingBottom="10dp"
+                    android:paddingLeft="60dp"
+                    android:paddingRight="60dp"
+                    android:paddingTop="10dp"
+                    android:text="@string/bus_fare"
+                    app:themeColor="@android:color/white" />
+            </RelativeLayout>
+        </RelativeLayout>
+    </LinearLayout>
+</layout>

@@ -9,5 +9,8 @@
     <color name="colorTextSub">#bdbdbd</color>
     <color name="colorShadow">#22222222</color>
 
+    <color name="busGreen">#54A953</color>
     <color name="textLight">#99ffffff</color>
+    <color name="textNormal">#4C4C4C</color>
+    <color name="textRed">#ff0000</color>
 </resources>
