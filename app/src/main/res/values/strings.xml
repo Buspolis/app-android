@@ -25,6 +25,7 @@
     <string name="settings">Settings</string>
     <string name="near_bus_stop">NEAR BUS STOP</string>
     <string name="bus_stop">BUS STOP</string>
+    <string name="information">Information</string>
     <string name="more">More</string>
     <string name="search_history">SEARCH HISTORY</string>
     <string name="refresh">Refresh Location</string>

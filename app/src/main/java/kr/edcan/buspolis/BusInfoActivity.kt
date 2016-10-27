@@ -3,7 +3,6 @@ package kr.edcan.buspolis
 import android.databinding.DataBindingUtil
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Handler
 import android.support.v4.content.ContextCompat
 import android.support.v7.widget.LinearLayoutManager
 import android.view.View
@@ -16,6 +15,7 @@ import kr.edcan.buspolis.databinding.ItemBusInfoBinding
 import kr.edcan.buspolis.model.BusStop
 import kr.edcan.buspolis.model.MultiString
 import kr.edcan.buspolis.model.NearBusStop
+import org.jetbrains.anko.startActivity
 import java.util.*
 
 class BusInfoActivity : AppCompatActivity() {
@@ -35,7 +35,7 @@ class BusInfoActivity : AppCompatActivity() {
         busNumber.text = "752"
         busRoute.text = "구산동 -> 총신대"
         busInfo.setOnClickListener {
-            // TODO start BusInfo
+            startActivity<BusDetailActivity>()
         }
         busFare.setOnClickListener {
             // TODO start BusFare
