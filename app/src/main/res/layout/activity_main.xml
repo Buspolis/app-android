@@ -63,7 +63,7 @@
                     android:textSize="@dimen/default_text" />
 
                 <ImageView
-                    android:id="@+id/imageView"
+                    android:id="@+id/search"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"

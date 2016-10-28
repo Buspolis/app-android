@@ -29,7 +29,8 @@
         <activity android:name=".SettingActivity" />
         <activity android:name=".BusInfoActivity" />
         <activity android:name=".BusDetailActivity" />
-        <activity android:name=".BusStopInfoActivity"></activity>
+        <activity android:name=".BusStopInfoActivity" />
+        <activity android:name=".SearchActivity"></activity>
     </application>
 
 </manifest>

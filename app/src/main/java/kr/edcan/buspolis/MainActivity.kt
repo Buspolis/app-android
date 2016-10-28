@@ -70,6 +70,10 @@ class MainActivity : LocationBaseActivity() {
                     }
                 })
                 .into(mainRecycler)
+
+        search.setOnClickListener {
+            startActivity<SearchActivity>()
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
