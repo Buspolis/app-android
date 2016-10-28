@@ -59,8 +59,7 @@
                 android:id="@+id/stationName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{item.name.ko}"
-
+                android:text="@{item.name.localName}"
                 android:textColor="@color/textNormal"
                 android:textSize="@dimen/large_text" />
 
@@ -68,7 +67,7 @@
                 android:id="@+id/stationNameSub"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{item.name.ko}"
+                android:text='@{(item.name.engSub.equals(""))? item.name.ko : item.name.engSub + "-" + item.name.ko}'
                 android:textColor="@color/colorTextSub"
                 android:textSize="@dimen/small_text" />
         </LinearLayout>
