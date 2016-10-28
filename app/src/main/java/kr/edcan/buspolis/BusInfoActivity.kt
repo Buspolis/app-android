@@ -17,7 +17,10 @@ import kotlinx.android.synthetic.main.activity_bus_info.*
 import kr.edcan.buspolis.databinding.ActivityBusInfoBinding
 import kr.edcan.buspolis.databinding.ContentBusinfoHeaderBinding
 import kr.edcan.buspolis.databinding.ItemBusInfoBinding
-import kr.edcan.buspolis.model.*
+import kr.edcan.buspolis.model.BusStop
+import kr.edcan.buspolis.model.NearBusStop
+import kr.edcan.buspolis.model.RM_Bus
+import kr.edcan.buspolis.model.RM_Station
 import kr.edcan.buspolis.util.HttpClient
 import kr.edcan.buspolis.util.Utils
 import org.jetbrains.anko.startActivity
@@ -28,18 +31,6 @@ import kotlin.properties.Delegates
 class BusInfoActivity : AppCompatActivity() {
 
     val arrayList = ArrayList<Any>()
-
-    fun backgroundColor(position: Int): Int {
-        val backgroundArr = arrayOf(R.color.busBlue, R.color.busRed, R.color.busGreen, R.color.busBlue, R.color.busGreen, R.color.busYellow, R.color.busRed)
-        val realPosition = if (position > backgroundArr.size) 6 else position
-        return backgroundArr[realPosition]
-    }
-
-    fun titleBarColor(position: Int): Int {
-        val titleBarArr = arrayOf(R.color.busBlueDark, R.color.busRedDark, R.color.busGreenDark, R.color.busBlueDark, R.color.busGreenDark, R.color.busYellowDark, R.color.busRedDark)
-        val realPosition = if (position > titleBarArr.size) 6 else position
-        return titleBarArr[realPosition]
-    }
 
     var realm by Delegates.notNull<Realm>()
 
@@ -64,9 +55,9 @@ class BusInfoActivity : AppCompatActivity() {
     private fun setLayout() {
         // TODO Bus Background Color, Bus Number, Bus Route
         var bus = realm.where(RM_Bus::class.java).equalTo("id", intent.getIntExtra("id", 0)).findFirst()
-        headerBackground.setBackgroundColor(ContextCompat.getColor(this, backgroundColor(bus.type)))
+        headerBackground.setBackgroundColor(ContextCompat.getColor(this, Utils.backgroundColor(bus.type)))
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
-            window.statusBarColor = ContextCompat.getColor(this, titleBarColor(bus.type))
+            window.statusBarColor = ContextCompat.getColor(this, Utils.titleBarColor(bus.type))
         busNumber.text = bus.num
         findNameSet(bus.id)
         busInfo.setOnClickListener {

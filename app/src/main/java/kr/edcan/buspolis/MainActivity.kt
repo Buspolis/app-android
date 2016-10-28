@@ -14,6 +14,7 @@ import com.yayandroid.locationmanager.LocationBaseActivity
 import com.yayandroid.locationmanager.LocationConfiguration
 import com.yayandroid.locationmanager.constants.ProviderType
 import cz.msebera.android.httpclient.Header
+import es.dmoral.prefs.Prefs
 import io.realm.Realm
 import kotlinx.android.synthetic.main.activity_main.*
 import kr.edcan.buspolis.model.BusStop
@@ -51,7 +52,6 @@ class MainActivity : LocationBaseActivity() {
             it.orientation = LinearLayoutManager.VERTICAL
             mainRecycler.layoutManager = it
         }
-
         LastAdapter.with(sList, BR.item)
                 .map<SearchItem>(R.layout.item_search)
                 .map<BusStop>(R.layout.content_main_header)
@@ -71,7 +71,7 @@ class MainActivity : LocationBaseActivity() {
                 })
                 .into(mainRecycler)
 
-        search.setOnClickListener {
+        searchLay.setOnClickListener {
             startActivity<SearchActivity>()
         }
     }
@@ -119,6 +119,7 @@ class MainActivity : LocationBaseActivity() {
                 .keepTracking(true)
                 .askForGooglePlayServices(true)
                 .setMinAccuracy(200.0f)
+                .setTimeInterval((Prefs.with(this).readInt("autoRef", 3000) * 1000).toLong())
                 .setWaitPeriod(ProviderType.GOOGLE_PLAY_SERVICES, 5 * 1000)
                 .setWaitPeriod(ProviderType.GPS, 10 * 1000)
                 .setWaitPeriod(ProviderType.NETWORK, 5 * 1000)

@@ -1,4 +1,4 @@
-<layout>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
@@ -14,7 +14,8 @@
             <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                app:contentInsetStartWithNavigation="0dp">
 
                 <EditText
                     android:id="@+id/searchEditText"
@@ -36,9 +37,13 @@
                 android:id="@+id/searchRecycler"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
+
             <LinearLayout
+                android:id="@+id/searchEmptyView"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"></LinearLayout>
+                android:layout_height="match_parent">
+                <!--TODO empty View-->
+            </LinearLayout>
         </RelativeLayout>
     </LinearLayout>
 </layout>
