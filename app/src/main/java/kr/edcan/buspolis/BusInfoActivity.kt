@@ -86,7 +86,7 @@ class BusInfoActivity : AppCompatActivity() {
                                 } else {
                                     infoBinding.bottomIndicator.visibility = View.VISIBLE
                                 }
-                                if (position == 3) {
+                                if (position == 1) {
                                     infoBinding.topIndicator.visibility = View.INVISIBLE
                                 } else {
                                     infoBinding.topIndicator.visibility = View.VISIBLE
