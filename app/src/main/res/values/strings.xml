@@ -49,4 +49,7 @@
     <string name="bus_route">Bus Route</string>
     <string name="service_hours">Service Hours</string>
     <string name="to_last_stop">to last stop</string>
+
+    <string name="patch">Patching database</string>
+    <string name="wait">Please wating some secs..</string>
 </resources>

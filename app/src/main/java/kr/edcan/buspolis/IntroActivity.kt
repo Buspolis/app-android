@@ -10,11 +10,20 @@ import android.view.animation.AnimationUtils
 import com.bumptech.glide.Glide
 import com.github.jksiezni.permissive.Permissive
 import es.dmoral.prefs.Prefs
+import io.realm.Realm
 import kotlinx.android.synthetic.main.activity_intro.*
+import kr.edcan.buspolis.model.RM_Bus
+import kr.edcan.buspolis.model.RM_Station
 import kr.edcan.u_stream.adapter.IntroPagerAdapter
+import org.jetbrains.anko.indeterminateProgressDialog
 import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.textColor
 import org.jetbrains.anko.toast
+import org.json.JSONArray
+import org.json.JSONException
+import org.json.JSONObject
+import java.io.IOException
+import java.nio.charset.Charset
 
 class IntroActivity : AppCompatActivity() {
 
@@ -24,6 +33,7 @@ class IntroActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
+        Realm.init(this)
         setContentView(R.layout.activity_intro)
 
         Glide.with(this).load(R.drawable.bg_start).into(introBg)
@@ -44,7 +54,6 @@ class IntroActivity : AppCompatActivity() {
                 }
             }
         }
-
         introNext.setOnClickListener {
             if(isCovered) {
                 isCovered = false
@@ -52,6 +61,8 @@ class IntroActivity : AppCompatActivity() {
                 introPager.adapter = IntroPagerAdapter(this)
                 introCover.startAnimation(AnimationUtils.loadAnimation(this, R.anim.fade_out))
                 introNext.textColor = ContextCompat.getColor(this, R.color.colorAccent)
+
+                setRealmData()
             }else{
                 if(introPager.currentItem == 1){
                     if(android.os.Build.VERSION.SDK_INT <= android.os.Build.VERSION_CODES.LOLLIPOP){
@@ -73,5 +84,35 @@ class IntroActivity : AppCompatActivity() {
                 introPager.setCurrentItem(introPager.currentItem+1, true)
             }
         }
+    }
+
+    fun setRealmData(){
+        var pDlg = indeterminateProgressDialog(getString(R.string.wait), getString(R.string.patch))
+        var realm = Realm.getDefaultInstance()
+        realm.executeTransactionAsync(Realm.Transaction {
+            it.createOrUpdateAllFromJson(RM_Station::class.java, loadJSONFromAsset("stations.json", "stations")!!)
+            it.createOrUpdateAllFromJson(RM_Bus::class.java, loadJSONFromAsset("routes.json", "routes")!!)
+        }, Realm.Transaction.OnSuccess {
+            pDlg.dismiss()
+        })
+    }
+
+    fun loadJSONFromAsset(name: String, array: String): JSONArray? {
+        var json: JSONArray? = null
+        try {
+            val `is` = assets.open(name)
+            val size = `is`.available()
+            val buffer = ByteArray(size)
+            `is`.read(buffer)
+            `is`.close()
+            json = JSONObject(String(buffer, Charset.forName("UTF-8"))).getJSONArray(array)
+        } catch (ex: IOException) {
+            ex.printStackTrace()
+            return null
+        } catch (e: JSONException) {
+            e.printStackTrace()
+        }
+
+        return json
     }
 }
