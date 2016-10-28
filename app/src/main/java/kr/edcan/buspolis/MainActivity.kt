@@ -1,27 +1,34 @@
 package kr.edcan.buspolis
 
+import android.databinding.ObservableArrayList
 import android.location.Location
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.widget.TextView
 import com.github.nitrico.lastadapter.LastAdapter
+import com.loopj.android.http.AsyncHttpResponseHandler
 import com.yayandroid.locationmanager.LocationBaseActivity
 import com.yayandroid.locationmanager.LocationConfiguration
 import com.yayandroid.locationmanager.constants.ProviderType
+import cz.msebera.android.httpclient.Header
+import io.realm.Realm
 import kotlinx.android.synthetic.main.activity_main.*
 import kr.edcan.buspolis.model.BusStop
 import kr.edcan.buspolis.model.MultiString
+import kr.edcan.buspolis.model.RM_Station
 import kr.edcan.buspolis.model.SearchItem
+import kr.edcan.buspolis.util.Utils
+import org.jetbrains.anko.find
 import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.toast
-import java.util.*
+import org.json.XML
 
 class MainActivity : LocationBaseActivity() {
 
-    var sList = ArrayList<Any>()
+    var sList = ObservableArrayList<Any>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -36,7 +43,7 @@ class MainActivity : LocationBaseActivity() {
             toolbarTitle.text = it.getLocalName()
             toolbarSubtitle.text = it.getEngSub()
         }
-        sList.add(BusStop(MultiString(this, "Gangnam Stn.", "江南站", "カンナム駅", "강남역"), "01-023", "내 마음속"))
+        sList.add(BusStop(MultiString(this, "Gangnam Stn.", "江南站", "カンナム駅", "강남역"), "01-023"))
         sList.add(SearchItem("0"))
         sList.add(SearchItem("1"))
         sList.add(SearchItem("2"))
@@ -59,6 +66,13 @@ class MainActivity : LocationBaseActivity() {
         LastAdapter.with(sList, BR.item)
                 .map<SearchItem>(R.layout.item_search)
                 .map<BusStop>(R.layout.content_main_header)
+                .onBind {
+                    if (item is BusStop){
+                        view.find<TextView>(R.id.refreshNear).setOnClickListener {
+                            getLocation()
+                        }
+                    }
+                }
                 .onClickListener(object : LastAdapter.OnClickListener {
                     override fun onClick(item: Any, view: View, type: Int, position: Int) {
                         if (position == 0) return
@@ -85,8 +99,25 @@ class MainActivity : LocationBaseActivity() {
         return super.onOptionsItemSelected(item)
     }
 
-    override fun onLocationChanged(location: Location?) {
-        Log.e("asdf", location.toString())
+    override fun onLocationChanged(location: Location) {
+        Utils.getNearStop(location.longitude, location.latitude, object : AsyncHttpResponseHandler() {
+            override fun onSuccess(statusCode: Int, headers: Array<out Header>?, responseBody: ByteArray) {
+                val result = XML.toJSONObject(String(responseBody)).getJSONObject("ServiceResult")
+                if(result.getJSONObject("msgHeader").getInt("headerCd") != 0){
+                    onFailure(statusCode, headers, responseBody, null)
+//                    sList[0] = 0
+                    return
+                }else{
+                    var item = result.getJSONObject("msgBody").getJSONArray("itemList").getJSONObject(0)
+                    var station = Realm.getDefaultInstance().where(RM_Station::class.java).equalTo("id", item.getInt("stationId")).findFirst()
+                    sList[0] = BusStop(this@MainActivity, station)
+                }
+            }
+            override fun onFailure(statusCode: Int, headers: Array<out Header>?, responseBody: ByteArray?, error: Throwable?) {
+//                sList[0] = 0 TODO cant find nearby stop
+            }
+        })
+        mainRecycler.adapter.notifyDataSetChanged()
     }
 
     override fun onLocationFailed(failType: Int) {

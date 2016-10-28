@@ -33,7 +33,6 @@ class IntroActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
-        Realm.init(this)
         setContentView(R.layout.activity_intro)
 
         Glide.with(this).load(R.drawable.bg_start).into(introBg)
