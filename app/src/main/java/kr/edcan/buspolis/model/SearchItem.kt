@@ -8,11 +8,16 @@ import kotlin.properties.Delegates
 
 class SearchItem {
     var type by Delegates.notNull<listType>()
-    var id = ""
+    var id = 0
     var keyword = ""
     var option: Any? = null
 
     constructor(keyword: String) {
+        this.keyword = keyword
+    }
+
+    constructor(id: Int, keyword: String) {
+        this.id = id
         this.keyword = keyword
     }
 

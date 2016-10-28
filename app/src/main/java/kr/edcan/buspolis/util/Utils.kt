@@ -14,6 +14,8 @@ object Utils{
 
     var ServiceKey = "rOCJOizLiZuxSqugYyn9B10Np9YWY3+ohWdwZlgNR4dD+M1kNFUxAp9Zs++RJv1eKazIVCysjbm2P3ld1VWkvQ=="
 
+    var ServiceKeyS = "C49c3xuCEXZMaWm1Z7SKQQyGM6xv10cLJK+cJPaNmWleqJl8iCn/FJ/ky5z9O73A9+9Y2Y3+AYDIc0dix/MZYA=="
+
     fun getNearStop(x: Double, y: Double, callback: AsyncHttpResponseHandler){
         var params = RequestParams().apply {
             put("ServiceKey", ServiceKey)

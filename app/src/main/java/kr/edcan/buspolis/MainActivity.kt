@@ -23,7 +23,6 @@ import kr.edcan.buspolis.model.SearchItem
 import kr.edcan.buspolis.util.Utils
 import org.jetbrains.anko.find
 import org.jetbrains.anko.startActivity
-import org.jetbrains.anko.toast
 import org.json.XML
 
 class MainActivity : LocationBaseActivity() {
@@ -44,19 +43,9 @@ class MainActivity : LocationBaseActivity() {
             toolbarSubtitle.text = it.getEngSub()
         }
         sList.add(BusStop(MultiString(this, "Gangnam Stn.", "江南站", "カンナム駅", "강남역"), "01-023"))
-        sList.add(SearchItem("0"))
-        sList.add(SearchItem("1"))
-        sList.add(SearchItem("2"))
-        sList.add(SearchItem("3"))
-        sList.add(SearchItem("4"))
-        sList.add(SearchItem("5"))
-        sList.add(SearchItem("6"))
-        sList.add(SearchItem("7"))
-        sList.add(SearchItem("9"))
-        sList.add(SearchItem("10"))
-        sList.add(SearchItem("11"))
-        sList.add(SearchItem("12"))
-        sList.add(SearchItem("13"))
+//        sList.add(0) // cant find
+        sList.add(SearchItem(100100409, "412"))
+        sList.add(SearchItem(100100447, "7016"))
 
         LinearLayoutManager(this).let {
             it.orientation = LinearLayoutManager.VERTICAL
@@ -77,8 +66,7 @@ class MainActivity : LocationBaseActivity() {
                     override fun onClick(item: Any, view: View, type: Int, position: Int) {
                         if (position == 0) return
                         item as SearchItem
-                        toast(item.keyword)
-                        if(type == R.layout.item_search) startActivity<BusInfoActivity>()
+                        if(type == R.layout.item_search) startActivity<BusInfoActivity>("id" to item.id)
                     }
                 })
                 .into(mainRecycler)
@@ -105,7 +93,6 @@ class MainActivity : LocationBaseActivity() {
                 val result = XML.toJSONObject(String(responseBody)).getJSONObject("ServiceResult")
                 if(result.getJSONObject("msgHeader").getInt("headerCd") != 0){
                     onFailure(statusCode, headers, responseBody, null)
-//                    sList[0] = 0
                     return
                 }else{
                     var item = result.getJSONObject("msgBody").getJSONArray("itemList").getJSONObject(0)

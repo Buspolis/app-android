@@ -14,7 +14,7 @@ import io.realm.Realm
 import kotlinx.android.synthetic.main.activity_intro.*
 import kr.edcan.buspolis.model.RM_Bus
 import kr.edcan.buspolis.model.RM_Station
-import kr.edcan.u_stream.adapter.IntroPagerAdapter
+import kr.edcan.buspolis.adapter.IntroPagerAdapter
 import org.jetbrains.anko.indeterminateProgressDialog
 import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.textColor

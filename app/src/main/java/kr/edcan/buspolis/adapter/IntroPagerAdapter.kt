@@ -1,4 +1,4 @@
-package kr.edcan.u_stream.adapter
+package kr.edcan.buspolis.adapter
 
 import android.content.Context
 import android.support.v4.view.PagerAdapter
