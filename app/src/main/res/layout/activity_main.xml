@@ -53,15 +53,13 @@
                     android:layout_height="match_parent"
                     app:themeColor="@color/colorTextSub" />
 
-                <EditText
+                <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@null"
                     android:gravity="center_vertical"
-                    android:hint="@string/search_hint"
                     android:paddingLeft="@dimen/element_margin"
-                    android:textColor="@color/colorAccent"
-                    android:textColorHint="@color/colorTextSub"
+                    android:text="@string/search_hint"
+                    android:textColor="@color/colorTextSub"
                     android:textSize="@dimen/default_text" />
 
                 <ImageView
@@ -72,7 +70,6 @@
                     android:layout_centerVertical="true"
                     android:layout_marginRight="12dp"
                     android:padding="@dimen/text_padding"
-
                     android:src="@drawable/ic_main_search" />
             </RelativeLayout>
         </android.support.design.widget.AppBarLayout>
