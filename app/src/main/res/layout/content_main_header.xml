@@ -16,7 +16,7 @@
 
         <android.support.v7.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="180dp"
+            android:layout_height="200dp"
             android:layout_marginLeft="@dimen/recycler_default_margin"
             android:layout_marginRight="@dimen/recycler_default_margin"
             android:layout_marginTop="@dimen/recycler_default_margin"
@@ -45,63 +45,70 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
-                        android:text="@{item.name.localName}"
+                        android:layout_marginBottom="@dimen/text_padding"
+                        android:layout_marginTop="@dimen/text_padding"
+                        android:ellipsize="end"
+                        android:maxLines="2"
+                        android:text="asdfasdfasdfasasfasdfasdfasdfsadfsafsdfadfasdfsadfsadfsdafasdfsafsadfasdfsdafsdawsfasfasdfasdfasdfsadfsadfasdfdasdfasdfasfasfasdf"
                         android:textColor="@android:color/white"
-                        android:textSize="36sp" />
+                        android:textSize="34sp" />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentBottom="true"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@{item.name.ko}"
+                                android:textColor="@color/textLight"
+                                android:textSize="@dimen/small_text" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@{item.name.engSub}"
+                                android:textColor="@color/textLight"
+                                android:textSize="@dimen/small_text" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentBottom="true"
+                            android:layout_alignParentRight="true"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:layout_width="36dp"
+                                android:layout_height="36dp"
+                                android:background="@drawable/circle_white"
+                                android:padding="@dimen/main_padding"
+                                android:src="@drawable/btn_ic_share" />
+
+                            <kr.edcan.buspolis.view.CartaTagView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginLeft="10dp"
+                                android:background="@drawable/selector_border"
+                                android:clickable="true"
+                                android:paddingBottom="@dimen/main_padding"
+                                android:paddingLeft="@dimen/cartatagview_defaultpadding"
+                                android:paddingRight="@dimen/cartatagview_defaultpadding"
+                                android:paddingTop="@dimen/main_padding"
+                                android:text="@string/more"
+                                app:themeColor="@android:color/white" />
+                        </LinearLayout>
+                    </RelativeLayout>
                 </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@{item.name.ko}"
-                        android:textColor="@color/textLight"
-                        android:textSize="@dimen/small_text" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@{item.name.engSub}"
-                        android:textColor="@color/textLight"
-                        android:textSize="@dimen/small_text" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
-                    android:layout_alignParentRight="true"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:layout_width="36dp"
-                        android:layout_height="36dp"
-                        android:background="@drawable/circle_white"
-                        android:padding="@dimen/main_padding"
-                        android:src="@drawable/btn_ic_share" />
-
-                    <kr.edcan.buspolis.view.CartaTagView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:layout_marginLeft="10dp"
-                        android:background="@drawable/selector_border"
-                        android:clickable="true"
-                        android:paddingBottom="@dimen/main_padding"
-                        android:paddingLeft="@dimen/cartatagview_defaultpadding"
-                        android:paddingRight="@dimen/cartatagview_defaultpadding"
-                        android:paddingTop="@dimen/main_padding"
-                        android:text="@string/more"
-                        app:themeColor="@android:color/white" />
-                </LinearLayout>
-
                 <kr.edcan.buspolis.view.CartaTagView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
