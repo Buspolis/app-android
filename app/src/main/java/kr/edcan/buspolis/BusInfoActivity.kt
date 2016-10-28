@@ -1,6 +1,7 @@
 package kr.edcan.buspolis
 
 import android.databinding.DataBindingUtil
+import android.os.Build
 import android.os.Bundle
 import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
@@ -29,9 +30,15 @@ class BusInfoActivity : AppCompatActivity() {
     val arrayList = ArrayList<Any>()
 
     fun backgroundColor(position: Int): Int {
-        val backgroundArr = arrayOf(R.color.busBlue, R.color.busRed, R.color.busGreen, R.color.busRed, R.color.busGreen, R.color.busYellow, R.color.busRed)
-        val realPosition = if (position>backgroundArr.size) 6 else position
+        val backgroundArr = arrayOf(R.color.busBlue, R.color.busRed, R.color.busGreen, R.color.busBlue, R.color.busGreen, R.color.busYellow, R.color.busRed)
+        val realPosition = if (position > backgroundArr.size) 6 else position
         return backgroundArr[realPosition]
+    }
+
+    fun titleBarColor(position: Int): Int {
+        val titleBarArr = arrayOf(R.color.busBlueDark, R.color.busRedDark, R.color.busGreenDark, R.color.busBlueDark, R.color.busGreenDark, R.color.busYellowDark, R.color.busRedDark)
+        val realPosition = if (position > titleBarArr.size) 6 else position
+        return titleBarArr[realPosition]
     }
 
     var realm by Delegates.notNull<Realm>()
@@ -56,8 +63,10 @@ class BusInfoActivity : AppCompatActivity() {
 
     private fun setLayout() {
         // TODO Bus Background Color, Bus Number, Bus Route
-        headerBackground.setBackgroundColor(ContextCompat.getColor(this, R.color.busGreen))
         var bus = realm.where(RM_Bus::class.java).equalTo("id", intent.getIntExtra("id", 0)).findFirst()
+        headerBackground.setBackgroundColor(ContextCompat.getColor(this, backgroundColor(bus.type)))
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
+            window.statusBarColor = ContextCompat.getColor(this, titleBarColor(bus.type))
         busNumber.text = bus.num
         findNameSet(bus.id)
         busInfo.setOnClickListener {
