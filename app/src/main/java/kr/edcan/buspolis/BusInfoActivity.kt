@@ -72,8 +72,13 @@ class BusInfoActivity : AppCompatActivity() {
                                 val infoBinding = DataBindingUtil.getBinding<ItemBusInfoBinding>(view)
                                 if (position == arrayList.size-1) {
                                     infoBinding.bottomIndicator.visibility = View.INVISIBLE
-                                } else if(position == 3){
+                                }else{
+                                    infoBinding.bottomIndicator.visibility = View.VISIBLE
+                                }
+                                if(position == 3){
                                     infoBinding.topIndicator.visibility = View.INVISIBLE
+                                }else{
+                                    infoBinding.topIndicator.visibility = View.VISIBLE
                                 }
                             }
                             R.layout.content_businfo_header -> {
@@ -91,10 +96,6 @@ class BusInfoActivity : AppCompatActivity() {
             add(getString(R.string.near_bus_stop))
             add(NearBusStop(MultiString(this@BusInfoActivity, "Gangnam Stn.", "江南站", "カンナム駅", "강남역"), "", 1))
             add(getString(R.string.bus_stop))
-            add(BusStop(MultiString(this@BusInfoActivity, "Gangnam Stn.", "江南站", "カンナム駅", "강남역")))
-            add(BusStop(MultiString(this@BusInfoActivity, "Gangnam Stn.", "江南站", "カンナム駅", "강남역")))
-            add(BusStop(MultiString(this@BusInfoActivity, "Gangnam Stn.", "江南站", "カンナム駅", "강남역")))
-            add(BusStop(MultiString(this@BusInfoActivity, "Gangnam Stn.", "江南站", "カンナム駅", "강남역")))
         }
     }
 
@@ -118,6 +119,13 @@ class BusInfoActivity : AppCompatActivity() {
                     var start = BusStop(this@BusInfoActivity, realm.where(RM_Station::class.java).equalTo("id", itemS.getInt("station")).findFirst())
                     var end = BusStop(this@BusInfoActivity, realm.where(RM_Station::class.java).equalTo("id", itemE.getInt("station")).findFirst())
                     route = "${start.name.getLocalName()} -> ${end.name.getLocalName()}"
+
+                    arrayList.run {
+                        for(i in 0..list.length()-1){
+                            add(BusStop(this@BusInfoActivity, realm.where(RM_Station::class.java).equalTo("id", list.getJSONObject(i).getInt("station")).findFirst()))
+                        }
+                    }
+                    busInfoRecyclerView.adapter.notifyDataSetChanged()
                 }
             }
             override fun onFailure(statusCode: Int, headers: Array<out Header>?, responseBody: ByteArray?, error: Throwable?) {
