@@ -108,6 +108,11 @@ class BusInfoActivity : AppCompatActivity() {
                         }
                     }
                 })
+                .onClickListener(object: LastAdapter.OnClickListener{
+                    override fun onClick(item: Any, view: View, type: Int, position: Int) {
+                        startActivity<BusStopInfoActivity>()
+                    }
+                })
                 .into(busInfoRecyclerView)
     }
 

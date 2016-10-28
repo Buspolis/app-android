@@ -28,7 +28,8 @@
     <string name="information">Information</string>
     <string name="more">More</string>
     <string name="search_history">SEARCH HISTORY</string>
-    <string name="refresh">Refresh Location</string>
+    <string name="refresh">Refresh</string>
+    <string name="refresh_location">Refresh Location</string>
     <string name="help">I want people\'s help</string>
     <string name="show_it">Please show or speak this sentence\nto other people.</string>
 
@@ -50,6 +51,9 @@
     <string name="service_hours">Service Hours</string>
     <string name="to_last_stop">to last stop</string>
 
+    <string name="seoul_blue_bus">Seoul Blue Bus</string>
+    <string name="seoul_green_bus">Seoul Green Bus</string>
     <string name="patch">Patching database</string>
     <string name="wait">Please wating some secs..</string>
+    <string name="map">Map</string>
 </resources>

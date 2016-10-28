@@ -28,7 +28,8 @@
         <activity android:name=".HelpActivity" />
         <activity android:name=".SettingActivity" />
         <activity android:name=".BusInfoActivity" />
-        <activity android:name=".BusDetailActivity"></activity>
+        <activity android:name=".BusDetailActivity" />
+        <activity android:name=".BusStopInfoActivity"></activity>
     </application>
 
 </manifest>
