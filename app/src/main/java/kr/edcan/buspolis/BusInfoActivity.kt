@@ -113,8 +113,6 @@ class BusInfoActivity : AppCompatActivity() {
 
     private fun setData() {
         arrayList.run {
-            add(getString(R.string.near_bus_stop))
-            add(NearBusStop(MultiString(this@BusInfoActivity, "Gangnam Stn.", "江南站", "カンナム駅", "강남역"), "", 1))
             add(getString(R.string.bus_stop))
         }
     }
