@@ -4,7 +4,6 @@ import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
-import android.view.MenuItem
 import android.view.View
 import com.github.nitrico.lastadapter.LastAdapter
 import kotlinx.android.synthetic.main.activity_bus_stop_info.*
@@ -17,18 +16,6 @@ import java.util.*
 class BusStopInfoActivity : AppCompatActivity() {
 
     val arrayList = ArrayList<Any>()
-
-    fun backgroundColor(position: Int): Int {
-        val backgroundArr = arrayOf(R.color.busBlue, R.color.busRed, R.color.busGreen, R.color.busBlue, R.color.busGreen, R.color.busYellow, R.color.busRed)
-        val realPosition = if (position > backgroundArr.size) 6 else position
-        return backgroundArr[realPosition]
-    }
-
-    fun titleBarColor(position: Int): Int {
-        val titleBarArr = arrayOf(R.color.busBlueDark, R.color.busRedDark, R.color.busGreenDark, R.color.busBlueDark, R.color.busGreenDark, R.color.busYellowDark, R.color.busRedDark)
-        val realPosition = if (position > titleBarArr.size) 6 else position
-        return titleBarArr[realPosition]
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -75,6 +62,11 @@ class BusStopInfoActivity : AppCompatActivity() {
         busMap.setOnClickListener {
 
         }
+
+        icBack.setOnClickListener {
+            finish()
+            overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
+        }
     }
 
     private fun setData() {
@@ -83,10 +75,4 @@ class BusStopInfoActivity : AppCompatActivity() {
         }
     }
 
-    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        when (item!!.itemId) {
-            android.R.id.home -> finish()
-        }
-        return super.onOptionsItemSelected(item)
-    }
 }

@@ -17,6 +17,7 @@ import kr.edcan.buspolis.databinding.ActivitySearchBinding
 import kr.edcan.buspolis.model.*
 import kr.edcan.buspolis.util.Utils
 import org.jetbrains.anko.find
+import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.textColor
 import java.util.*
 import kotlin.properties.Delegates
@@ -70,9 +71,16 @@ class SearchActivity : AppCompatActivity() {
                             sub.text = sData.num
                         }
                     }
-
                 }
                 .onClick {
+                    var sData = (item as SearchItem)
+                    when(sData.type){
+                        SearchItem.listType.BUS ->{
+                            startActivity<BusInfoActivity>("id" to sData.id)
+                        }
+                        SearchItem.listType.BUSSTOP ->{
+                        }
+                    }
                 }
                 .into(searchRecycler)
 
