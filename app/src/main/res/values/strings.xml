@@ -17,6 +17,19 @@
     <string name="intro_subtitle3_cn">此应用程序使用您的位置信息搜索您的公共汽车站。</string>
     <string name="intro_subtitle3_jp">このアプリは、\nバス停の周りに検索あなたのためのあなたの位置情報を使用しています。</string>
 
+    <string name="blue_bus_en">Blue Bus</string>
+    <string name="blue_bus_cn">青巴士</string>
+    <string name="blue_bus_jp">青いバス</string>
+    <string name="green_bus_en">Green Bus</string>
+    <string name="green_bus_cn">緑巴士</string>
+    <string name="green_bus_jp">緑のバス</string>
+    <string name="yellow_bus_en">Yellow Bus</string>
+    <string name="yellow_bus_cn">黄色巴士</string>
+    <string name="yellow_bus_jp">黄色バス</string>
+    <string name="red_bus_en">Red Bus</string>
+    <string name="red_bus_cn">红色巴士</string>
+    <string name="red_bus_jp">赤バス</string>
+
     <!-- 영문 이 아래는 번역 요구-->
     <string name="next">Next</string>
     <string name="set_permission">Set Permission</string>
@@ -51,8 +64,6 @@
     <string name="service_hours">Service Hours</string>
     <string name="to_last_stop">to last stop</string>
 
-    <string name="seoul_blue_bus">Seoul Blue Bus</string>
-    <string name="seoul_green_bus">Seoul Green Bus</string>
     <string name="patch">Patching database</string>
     <string name="wait">Please wating some secs..</string>
     <string name="map">Map</string>

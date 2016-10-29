@@ -79,7 +79,7 @@ class BusStopInfoActivity : AppCompatActivity() {
 
     private fun setData() {
         arrayList.run {
-            add(getString(R.string.seoul_blue_bus))
+//            add(getString(R.string.seoul_blue_bus))
         }
     }
 

@@ -14,13 +14,11 @@ import com.github.nitrico.lastadapter.LastAdapter
 import io.realm.Realm
 import kotlinx.android.synthetic.main.activity_search.*
 import kr.edcan.buspolis.databinding.ActivitySearchBinding
-import kr.edcan.buspolis.model.BusStop
-import kr.edcan.buspolis.model.RM_Bus
-import kr.edcan.buspolis.model.RM_Station
-import kr.edcan.buspolis.model.SearchItem
+import kr.edcan.buspolis.model.*
 import kr.edcan.buspolis.util.Utils
 import org.jetbrains.anko.find
 import org.jetbrains.anko.textColor
+import java.util.*
 import kotlin.properties.Delegates
 
 class SearchActivity : AppCompatActivity() {
@@ -28,11 +26,21 @@ class SearchActivity : AppCompatActivity() {
     var sList  = ObservableArrayList<SearchItem>()
 
     var realm by Delegates.notNull<Realm>()
+    var busType = ArrayList<MultiString>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         DataBindingUtil.setContentView<ActivitySearchBinding>(this, R.layout.activity_search)
         realm = Realm.getDefaultInstance()
+        busType = arrayListOf(
+                MultiString(this, getString(R.string.blue_bus_en),getString(R.string.blue_bus_cn),getString(R.string.blue_bus_jp)),
+                MultiString(this, getString(R.string.red_bus_en),getString(R.string.red_bus_cn),getString(R.string.red_bus_jp)),
+                MultiString(this, getString(R.string.green_bus_en),getString(R.string.green_bus_cn),getString(R.string.green_bus_jp)),
+                MultiString(this, getString(R.string.blue_bus_en),getString(R.string.blue_bus_cn),getString(R.string.blue_bus_jp)),
+                MultiString(this, getString(R.string.green_bus_en),getString(R.string.green_bus_cn),getString(R.string.green_bus_jp)),
+                MultiString(this, getString(R.string.yellow_bus_en),getString(R.string.yellow_bus_cn),getString(R.string.yellow_bus_jp)),
+                MultiString(this, getString(R.string.red_bus_en),getString(R.string.red_bus_cn),getString(R.string.red_bus_jp))
+        )
         setLayout()
     }
 
@@ -55,13 +63,14 @@ class SearchActivity : AppCompatActivity() {
                     when(sData.type){
                         SearchItem.listType.BUS ->{
                             keyword.textColor = ContextCompat.getColor(this@SearchActivity, Utils.backgroundColor(sData.option))
-                            sub.text = ""
+                            sub.text = busType[sData.option].getLocalName()
                         }
                         SearchItem.listType.BUSSTOP ->{
                             keyword.textColor = ContextCompat.getColor(this@SearchActivity, R.color.textNormal)
                             sub.text = sData.num
                         }
                     }
+
                 }
                 .onClick {
                 }

@@ -12,9 +12,9 @@ import com.github.jksiezni.permissive.Permissive
 import es.dmoral.prefs.Prefs
 import io.realm.Realm
 import kotlinx.android.synthetic.main.activity_intro.*
+import kr.edcan.buspolis.adapter.IntroPagerAdapter
 import kr.edcan.buspolis.model.RM_Bus
 import kr.edcan.buspolis.model.RM_Station
-import kr.edcan.buspolis.adapter.IntroPagerAdapter
 import org.jetbrains.anko.indeterminateProgressDialog
 import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.textColor
@@ -66,6 +66,8 @@ class IntroActivity : AppCompatActivity() {
                 if(introPager.currentItem == 1){
                     if(android.os.Build.VERSION.SDK_INT <= android.os.Build.VERSION_CODES.LOLLIPOP){
                         Prefs.with(this).writeBoolean("isFirst", false)
+                        startActivity<MainActivity>()
+                        overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
                         finish()
                     }
                     introNext.text = getString(R.string.set_permission)
