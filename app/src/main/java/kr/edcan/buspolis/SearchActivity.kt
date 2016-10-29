@@ -63,7 +63,7 @@ class SearchActivity : AppCompatActivity() {
                     when(sData.type){
                         SearchItem.listType.BUS ->{
                             keyword.textColor = ContextCompat.getColor(this@SearchActivity, Utils.backgroundColor(sData.option))
-                            sub.text = busType[sData.option].getLocalName()
+                            sub.text = getBusType(sData.option).getLocalName()
                         }
                         SearchItem.listType.BUSSTOP ->{
                             keyword.textColor = ContextCompat.getColor(this@SearchActivity, R.color.textNormal)
@@ -98,11 +98,13 @@ class SearchActivity : AppCompatActivity() {
             }
         })
     }
+    fun getBusType(position: Int) = if(position > busType.size) busType[6] else busType[position]
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         when(item!!.itemId){
             android.R.id.home -> {
                 finish()
+                overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
             }
         }
         return super.onOptionsItemSelected(item)

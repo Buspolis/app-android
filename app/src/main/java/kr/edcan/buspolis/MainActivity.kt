@@ -73,6 +73,7 @@ class MainActivity : LocationBaseActivity() {
 
         searchLay.setOnClickListener {
             startActivity<SearchActivity>()
+            overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
         }
     }
 
