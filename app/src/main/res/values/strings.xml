@@ -90,4 +90,9 @@
     <string name="cash">Cash</string>
     <string name="card">Card</string>
     <string name="calculate">Calculate</string>
+    <string name="people_count">People Count</string>
+    <string name="won">won</string>
+    <string name="info_busfare">If more than two people get on the bus,\nplease tell bus driver.</string>
+    <string name="close">Close</string>
+    <string name="speak">Speak</string>
 </resources>
