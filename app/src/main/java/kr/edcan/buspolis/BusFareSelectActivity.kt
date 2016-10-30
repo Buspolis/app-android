@@ -6,6 +6,7 @@ import android.os.Build
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v4.content.ContextCompat
+import android.util.Log
 import android.view.View
 import com.afollestad.materialdialogs.MaterialDialog
 import kotlinx.android.synthetic.main.activity_bus_fare_select.*
@@ -44,7 +45,7 @@ class BusFareSelectActivity : AppCompatActivity(), View.OnClickListener {
     var youthCount = 0
     var childCount = 0
     var mainColor = 0
-    var countArr = arrayOf(adultCount, youthCount, childCount)
+    var countArr = arrayListOf(adultCount, youthCount, childCount)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         DataBindingUtil.setContentView<ActivityBusFareSelectBinding>(this, R.layout.activity_bus_fare_select)
@@ -62,7 +63,16 @@ class BusFareSelectActivity : AppCompatActivity(), View.OnClickListener {
         youthFare.setOnClickListener { showPeopleDialog(1) }
         childFare.setOnClickListener { showPeopleDialog(2) }
         calculate.setOnClickListener {
-            startActivity<BusFareShowActivity>()
+            startActivity<BusFareShowActivity>(
+                    /* TODO Money Calculate */
+                    "money" to 1000,
+                    "busType" to selectedType,
+                    "adultCount" to adultCount,
+                    "youthCount" to youthCount,
+                    "childCount" to childCount,
+                    "paymentType" to paymentType
+            )
+
         }
     }
 
@@ -73,7 +83,11 @@ class BusFareSelectActivity : AppCompatActivity(), View.OnClickListener {
                 .items(arrayListOf(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10))
                 .itemsCallbackSingleChoice(countArr[i]) { dialog, itemView, which, text ->
                     choosing.text = which.toString()
-                    countArr[i] = which
+                    when(i) {
+                        0-> adultCount = which
+                        1-> youthCount = which
+                        2-> childCount = which
+                    }
                     true
                 }
                 .show()

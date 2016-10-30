@@ -2,7 +2,7 @@ package kr.edcan.buspolis.model
 
 import android.content.Context
 import android.view.View
-import kr.edcan.buspolis.HelpActivity
+import kr.edcan.buspolis.BusFareSpeakActivity
 import kr.edcan.buspolis.util.Utils
 import org.jetbrains.anko.startActivity
 
@@ -24,7 +24,7 @@ class BusStop{
     }
 
     var helpListener = View.OnClickListener{
-        it.context.startActivity<HelpActivity>("name" to name.ko)
+        it.context.startActivity<BusFareSpeakActivity>("name" to name.ko)
     }
 
     constructor(context: Context, station: RM_Station){
