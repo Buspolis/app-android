@@ -64,7 +64,7 @@ class BusInfoActivity : AppCompatActivity() {
             startActivity<BusDetailActivity>()
         }
         busFare.setOnClickListener {
-            // TODO start BusFare
+            startActivity<BusFareSelectActivity>()
         }
         icBack.setOnClickListener { finish() }
 

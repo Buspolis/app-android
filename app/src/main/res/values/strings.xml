@@ -30,6 +30,19 @@
     <string name="red_bus_cn">红色巴士</string>
     <string name="red_bus_jp">赤バス</string>
 
+    <string name="blue_en">Blue </string>
+    <string name="blue_cn"></string>
+    <string name="blue_jp"></string>
+    <string name="green_en">Green</string>
+    <string name="green_cn"></string>
+    <string name="green_jp"></string>
+    <string name="yellow_en">Yellow</string>
+    <string name="yellow_cn"></string>
+    <string name="yellow_jp"></string>
+    <string name="red_en">Red</string>
+    <string name="red_cn"></string>
+    <string name="red_jp"></string>
+
     <!-- 영문 이 아래는 번역 요구-->
     <string name="next">Next</string>
     <string name="set_permission">Set Permission</string>
@@ -68,4 +81,13 @@
     <string name="wait">Please wating some secs..</string>
     <string name="map">Map</string>
     <string name="search">Search</string>
+    <string name="bus_type">Bus Type</string>
+    <string name="people">People</string>
+    <string name="adult">Adult</string>
+    <string name="youth">Youth</string>
+    <string name="child">Child</string>
+    <string name="payments">Payments</string>
+    <string name="cash">Cash</string>
+    <string name="card">Card</string>
+    <string name="calculate">Calculate</string>
 </resources>
