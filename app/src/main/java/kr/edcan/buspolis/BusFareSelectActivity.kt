@@ -54,6 +54,7 @@ class BusFareSelectActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun initLayout() {
+        icBack.setOnClickListener { finish() }
         blueBus.setOnClickListener(this)
         greenBus.setOnClickListener(this)
         yellowBus.setOnClickListener(this)
