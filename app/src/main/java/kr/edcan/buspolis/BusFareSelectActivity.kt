@@ -66,7 +66,7 @@ class BusFareSelectActivity : AppCompatActivity(), View.OnClickListener {
         calculate.setOnClickListener {
             startActivity<BusFareShowActivity>(
                     /* TODO Money Calculate */
-                    "money" to 1000,
+                    "money" to kr.edcan.buspolis.util.Utils.busFare(paymentType, selectedType, adultCount, youthCount, childCount),
                     "busType" to selectedType,
                     "adultCount" to adultCount,
                     "youthCount" to youthCount,

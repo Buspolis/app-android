@@ -51,8 +51,36 @@ object Utils {
         val colorArr = arrayOf(R.color.busBlue, R.color.busGreen, R.color.busYellow)
         return colorArr[if (position > colorArr.size) 0 else position]
     }
+
     fun busFareColorDark(position: Int): Int {
         val colorArr = arrayOf(R.color.busBlueDark, R.color.busGreenDark, R.color.busYellowDark)
         return colorArr[if (position > colorArr.size) 0 else position]
+    }
+
+    fun busFare(payment: Int, busType: Int, adult: Int, youth: Int, child: Int): Int {
+        var result = 0
+        when (payment) {
+            0 -> {
+                when (busType) {
+                    0, 1 -> {
+                        result += (1200 * adult + 720 * youth + 450 * child)
+                    }
+                    2 -> {
+                        result += (1100 * adult + 560 * youth + 350 * child)
+                    }
+                }
+            }
+            1 -> {
+                when (busType) {
+                    0, 1 -> {
+                        result += (1300 * adult + 1300 * youth + 450 * child)
+                    }
+                    2 -> {
+                        result += (1200 * adult + 1200 * youth + 350 * child)
+                    }
+                }
+            }
+        }
+        return result
     }
 }
