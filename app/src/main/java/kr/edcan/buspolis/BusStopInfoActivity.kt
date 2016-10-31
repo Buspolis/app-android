@@ -70,7 +70,8 @@ class BusStopInfoActivity : AppCompatActivity() {
             startActivity<BusFareSelectActivity>()
         }
         busMap.setOnClickListener {
-
+            startActivity<MapsActivity>("x" to station.x, "y" to station.y,
+                    "name" to station.name.getLocalName(), "name_ko" to station.name.ko, "id" to station.id)
         }
 
         icBack.setOnClickListener {

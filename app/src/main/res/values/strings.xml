@@ -42,6 +42,7 @@
     <string name="red_en">Red</string>
     <string name="red_cn"></string>
     <string name="red_jp"></string>
+    <string name="title_activity_maps">Maps</string>
 
     <!-- 영문 이 아래는 번역 요구-->
     <string name="next">Next</string>

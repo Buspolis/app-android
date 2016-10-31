@@ -14,6 +14,8 @@ class BusStop{
     var id = 0
     var name = MultiString()
     var code = ""
+    var x = 0.0
+    var y = 0.0
 
     constructor(name: MultiString, code: String){
         this.name = name
@@ -38,5 +40,7 @@ class BusStop{
         this.id = station.id
         this.name = MultiString(context, station.name_en, station.name_cn, station.name_jp, station.name)
         this.code = Utils.convertCode(station.num)
+        this.x = station.x
+        this.y = station.y
     }
 }
