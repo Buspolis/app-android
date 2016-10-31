@@ -1,10 +1,12 @@
 package kr.edcan.buspolis.model
 
 import android.content.Context
+import android.content.Intent
 import android.view.View
 import kr.edcan.buspolis.BusStopInfoActivity
 import kr.edcan.buspolis.HelpActivity
 import kr.edcan.buspolis.util.Utils
+import org.jetbrains.anko.selector
 import org.jetbrains.anko.startActivity
 
 /**
@@ -34,6 +36,36 @@ class BusStop{
     var infoListener = View.OnClickListener{
         if(id != 0)
             it.context.startActivity<BusStopInfoActivity>("id" to id)
+    }
+
+    var shareListener = View.OnClickListener{
+        if(id != 0){
+            it.context.run {
+                selector("", listOf("ENG", "中文", "日本語", "한국어"),{ i ->
+                    var name = this@BusStop.name
+                    var msg: String = when(i){
+                        0 -> {
+                            "Now I'm near '${name.en}' bus stop."
+                        }
+                        1 -> {
+                            "我现在是附近的“${name.cn}”巴士站。"
+                        }
+                        2 -> {
+                            "私は今、「${name.jp}」バス停の近くにあります。"
+                        }
+                        else -> {
+                            "나는 지금 '${name.ko}' 정류장 근처에 있어."
+                        }
+                    }
+                    val sendIntent = Intent()
+                    msg += "\nhttps://www.google.co.kr/maps/$y,$x,17z"
+                    sendIntent.putExtra(Intent.EXTRA_TEXT, msg)
+                    sendIntent.action = Intent.ACTION_SEND
+                    sendIntent.type = "text/plain"
+                    startActivity(sendIntent)
+                })
+            }
+        }
     }
 
     constructor(context: Context, station: RM_Station){

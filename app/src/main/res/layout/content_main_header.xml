@@ -122,7 +122,9 @@
                         <ImageView
                             android:layout_width="36dp"
                             android:layout_height="36dp"
-                            android:background="@drawable/circle_white"
+                            android:background="@drawable/selector_border"
+                            android:clickable="true"
+                            android:onClick="@{item.shareListener}"
                             android:padding="@dimen/main_padding"
                             android:src="@drawable/btn_ic_share" />
 
