@@ -39,6 +39,14 @@ class MultiString {
         this.ko = ko
     }
 
+    constructor(context: Context, main: Int, sub: Int){
+        this.mContext = context
+        this.en = context.getString(main)
+        this.cn = context.getString(main)
+        this.jp = context.getString(main)
+        this.ko = context.getString(sub)
+    }
+
     fun get(key: String): String{
         return when(key){
             "en" -> en
@@ -52,7 +60,7 @@ class MultiString {
     fun getLocalName() = get(Utils.lang(mContext))
 
     fun getEngSub(): String{
-        return if(Utils.lang(mContext) == "en"){
+        return if(Utils.lang(mContext) == "en" || en == jp){
             ""
         }else {
             get("en")

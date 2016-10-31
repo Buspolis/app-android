@@ -45,8 +45,7 @@ class MainActivity : LocationBaseActivity() {
             toolbarTitle.text = it.getLocalName()
             toolbarSubtitle.text = it.getEngSub()
         }
-        sList.add(BusStop(MultiString(this, "Gangnam Stn.", "江南站", "カンナム駅", "강남역"), "01-023"))
-//        sList.add(0) // cant find
+        sList.add(Utils.loadBS(this))
         sList.add(SearchItem(100100409, "412"))
         sList.add(SearchItem(100100447, "7016"))
 
@@ -124,7 +123,7 @@ class MainActivity : LocationBaseActivity() {
                 }
             }
             override fun onFailure(statusCode: Int, headers: Array<out Header>?, responseBody: ByteArray?, error: Throwable?) {
-//                sList[0] = 0 TODO cant find nearby stop
+                sList[0] = Utils.errBS(this@MainActivity)
             }
         })
         mainRecycler.adapter.notifyDataSetChanged()

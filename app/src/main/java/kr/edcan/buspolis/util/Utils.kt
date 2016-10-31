@@ -5,6 +5,7 @@ import com.loopj.android.http.AsyncHttpResponseHandler
 import com.loopj.android.http.RequestParams
 import es.dmoral.prefs.Prefs
 import kr.edcan.buspolis.R
+import kr.edcan.buspolis.model.BusStop
 import kr.edcan.buspolis.model.MultiString
 
 /**
@@ -100,4 +101,10 @@ object Utils {
         )
         return if(position > busType.size) busType[6] else busType[position]
     }
+
+    fun loadMS(context: Context) = MultiString(context, R.string.main_loading, R.string.main_wait)
+    fun loadBS(context: Context) = BusStop(loadMS(context), "00-000")
+    fun errMS(context: Context) = MultiString(context, R.string.main_err, R.string.main_err_sub)
+    fun errBS(context: Context) = BusStop(errMS(context), "00-000")
+
 }
