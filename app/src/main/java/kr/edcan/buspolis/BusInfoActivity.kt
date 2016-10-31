@@ -24,6 +24,7 @@ import kr.edcan.buspolis.model.RM_Station
 import kr.edcan.buspolis.util.HttpClient
 import kr.edcan.buspolis.util.Utils
 import org.jetbrains.anko.startActivity
+import org.jetbrains.anko.toast
 import org.json.XML
 import java.util.*
 import kotlin.properties.Delegates
@@ -61,7 +62,7 @@ class BusInfoActivity : AppCompatActivity() {
         busNumber.text = bus.num
         findNameSet(bus.id)
         busInfo.setOnClickListener {
-            startActivity<BusDetailActivity>()
+            startActivity<BusDetailActivity>("id" to intent.getIntExtra("id", 0))
         }
         busFare.setOnClickListener {
             startActivity<BusFareSelectActivity>()
@@ -146,7 +147,7 @@ class BusInfoActivity : AppCompatActivity() {
             }
 
             override fun onFailure(statusCode: Int, headers: Array<out Header>?, responseBody: ByteArray?, error: Throwable?) {
-                //TODO 버스 찾을수 없음 나중에 ㅃㅃ
+                toast(getString(R.string.bus_err))
             }
         })
     }

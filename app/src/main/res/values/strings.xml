@@ -101,5 +101,7 @@
     <string name="main_wait">Please wait some secs...</string>
     <string name="main_err">Can\'t find any peripheral station.</string>
     <string name="main_err_sub">Please check the location signal and refresh</string>
-
+    <string name="bus_err">Can\'t find any bus data.</string>
+    <string name="first_bus">First bus</string>
+    <string name="last_bus">Last bus</string>
 </resources>

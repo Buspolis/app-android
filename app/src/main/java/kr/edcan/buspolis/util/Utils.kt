@@ -19,7 +19,7 @@ import java.util.*
 object Utils {
     fun lang(context: Context) = Prefs.with(context).read("lang")!!
 
-    var ServiceKey = "rOCJOizLiZuxSqugYyn9B10Np9YWY3+ohWdwZlgNR4dD+M1kNFUxAp9Zs++RJv1eKazIVCysjbm2P3ld1VWkvQ=="
+    var ServiceKey = "KnaC7RE4s3WS7F2bJ7fj7+civJ9FaF4xYkRA3xPcR/vk7LRlGkQBReVeVgbtY9392ifEe5zn8bWPWGbBpCZ2CQ=="
 
     var ServiceKeyS = "C49c3xuCEXZMaWm1Z7SKQQyGM6xv10cLJK+cJPaNmWleqJl8iCn/FJ/ky5z9O73A9+9Y2Y3+AYDIc0dix/MZYA=="
 

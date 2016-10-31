@@ -28,7 +28,6 @@ import kr.edcan.buspolis.model.RM_Station
 import kr.edcan.buspolis.model.SearchItem
 import kr.edcan.buspolis.util.Utils
 import org.jetbrains.anko.find
-import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.startActivityForResult
 import org.jetbrains.anko.textColor
 import org.json.XML
@@ -94,14 +93,12 @@ class MainActivity : LocationBaseActivity() {
                         item as SearchItem
                         if(type == R.layout.item_search){
                             Utils.putHistory(this@MainActivity, item)
-                            setLayout()
-                            getLocation()
                             when(item.type){
                                 SearchItem.listType.BUS ->{
-                                    startActivity<BusInfoActivity>("id" to item.id)
+                                    startActivityForResult<BusInfoActivity>(100, "id" to item.id)
                                 }
                                 SearchItem.listType.BUSSTOP ->{
-                                    startActivity<BusStopInfoActivity>("id" to item.id)
+                                    startActivityForResult<BusStopInfoActivity>(100, "id" to item.id)
                                 }
                             }
                         }
@@ -135,6 +132,10 @@ class MainActivity : LocationBaseActivity() {
             getLocation()
         }
         if(requestCode == 300 && resultCode == Activity.RESULT_OK){
+            setLayout()
+            getLocation()
+        }
+        if(requestCode == 100){
             setLayout()
             getLocation()
         }

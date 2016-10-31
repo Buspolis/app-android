@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
+import android.util.Log
 import android.view.View
 import android.widget.TextView
 import com.github.nitrico.lastadapter.LastAdapter
@@ -22,6 +23,9 @@ import kr.edcan.buspolis.util.Utils
 import org.jetbrains.anko.find
 import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.textColor
+import org.jetbrains.anko.toast
+import org.json.JSONArray
+import org.json.JSONObject
 import org.json.XML
 import java.util.*
 import kotlin.properties.Delegates
@@ -96,14 +100,27 @@ class BusStopInfoActivity : AppCompatActivity() {
                     onFailure(statusCode, headers, responseBody, null)
                     return
                 } else {
-                    var list = result.getJSONObject("msgBody").getJSONArray("itemList")
-                    arrayList.run {
-                        for (i in 0..list.length() - 1) {
-                            var obj = list.getJSONObject(i)
-                            if(obj.getString("arrmsg1").contains("대기") || obj.getString("arrmsg1").contains("종료")) continue
-                            add(ComingBus(
+                    Log.e("asdf", Utils.convertNum(station.code))
+                    var tmp = result.getJSONObject("msgBody").get("itemList")
+                    if(tmp is JSONArray) {
+                        var list = tmp
+                        arrayList.run {
+                            for (i in 0..list.length() - 1) {
+                                var obj = list.getJSONObject(i)
+                                if (obj.getString("arrmsg1").contains("대기") || obj.getString("arrmsg1").contains("종료")) continue
+                                add(ComingBus(
+                                        obj.getInt("busRouteId"), obj.getString("rtNm"), obj.getInt("routeType"),
+                                        getRemainTime(obj.getString("arrmsg1")), getRemainStat(obj.getString("arrmsg1"))
+                                ))
+                            }
+                        }
+                    }else if(tmp is JSONObject){
+                        var obj = tmp
+                        if (obj.getString("arrmsg1").contains("대기") || obj.getString("arrmsg1").contains("종료"))
+                        else {
+                            arrayList.add(ComingBus(
                                     obj.getInt("busRouteId"), obj.getString("rtNm"), obj.getInt("routeType"),
-                                    getRemainTime(obj.getString("arrmsg1")),getRemainStat(obj.getString("arrmsg1"))
+                                    getRemainTime(obj.getString("arrmsg1")), getRemainStat(obj.getString("arrmsg1"))
                             ))
                         }
                     }
@@ -114,7 +131,7 @@ class BusStopInfoActivity : AppCompatActivity() {
             }
 
             override fun onFailure(statusCode: Int, headers: Array<out Header>?, responseBody: ByteArray?, error: Throwable?) {
-                //TODO 버스 찾을수 없음 나중에 ㅃㅃ
+                toast(getString(R.string.bus_err))
                 isInserting = false
             }
         })

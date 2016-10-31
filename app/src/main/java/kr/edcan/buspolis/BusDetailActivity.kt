@@ -1,13 +1,16 @@
 package kr.edcan.buspolis
 
 import android.databinding.DataBindingUtil
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v4.content.ContextCompat
+import android.support.v7.app.AppCompatActivity
 import android.text.Html
 import android.view.MenuItem
+import io.realm.Realm
 import kotlinx.android.synthetic.main.activity_bus_detail.*
 import kr.edcan.buspolis.databinding.ActivityBusDetailBinding
+import kr.edcan.buspolis.model.RM_Bus
+import kr.edcan.buspolis.util.Utils
 
 class BusDetailActivity : AppCompatActivity() {
 
@@ -27,11 +30,14 @@ class BusDetailActivity : AppCompatActivity() {
     }
 
     private fun setData() {
-        busRoute.text = "구산동 -> 노량진"
-        busRouteContent.text = "Sunjun Traffic Service"
+        var realm = Realm.getDefaultInstance()
+        var bus = realm.where(RM_Bus::class.java).equalTo("id", intent.getIntExtra("id", 0)).findFirst()
+        busRoute.text = "${bus.start} -> ${bus.end}"
+        busRouteContent.text = Utils.getBusType(this, bus.type).getLocalName()
         // TODO Bus Service Hour Text
-//        busServiceHour.text = Html.fromHtml(
-//        )
+        busServiceHour.text = Html.fromHtml(
+                "<font color='#4db6ac'>${getString(R.string.first_bus)} : </font>${bus.first.substring(0..1)}:${bus.first.substring(2..3)} ~ <font color='#4db6ac'>${getString(R.string.last_bus)} : </font>${bus.last.substring(0..1)}:${bus.last.substring(2..3)}"
+        )
     }
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         when (item!!.itemId) {
