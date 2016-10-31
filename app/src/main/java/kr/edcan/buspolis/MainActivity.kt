@@ -12,6 +12,8 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.TextView
 import com.github.nitrico.lastadapter.LastAdapter
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import com.loopj.android.http.AsyncHttpResponseHandler
 import com.yayandroid.locationmanager.LocationBaseActivity
 import com.yayandroid.locationmanager.LocationConfiguration
@@ -30,6 +32,7 @@ import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.startActivityForResult
 import org.jetbrains.anko.textColor
 import org.json.XML
+import java.util.*
 
 class MainActivity : LocationBaseActivity() {
 
@@ -50,9 +53,12 @@ class MainActivity : LocationBaseActivity() {
             toolbarSubtitle.text = it.getEngSub()
         }
         sList.add(Utils.loadBS(this))
-        sList.add(SearchItem(100100409, "412"))
-        sList.add(SearchItem(100100447, "7016"))
-
+        var hisText = Prefs.with(this).read("searchHistory", "")
+        var history = if(hisText == "") ArrayList<SearchItem>()
+        else Gson().fromJson(hisText,  object: TypeToken<ArrayList<SearchItem>>() {}.type)
+        for(i in history.reversed()){
+            sList.add(i)
+        }
         LinearLayoutManager(this).let {
             it.orientation = LinearLayoutManager.VERTICAL
             mainRecycler.layoutManager = it
@@ -70,7 +76,6 @@ class MainActivity : LocationBaseActivity() {
                         var keyword = view.find<TextView>(R.id.searchKeyword)
                         var sub = view.find<TextView>(R.id.searchSub)
                         var sData = (item as SearchItem)
-
                         when(sData.type){
                             SearchItem.listType.BUS ->{
                                 keyword.textColor = ContextCompat.getColor(this@MainActivity, Utils.backgroundColor(sData.option))
@@ -87,13 +92,25 @@ class MainActivity : LocationBaseActivity() {
                     override fun onClick(item: Any, view: View, type: Int, position: Int) {
                         if (position == 0) return
                         item as SearchItem
-                        if(type == R.layout.item_search) startActivity<BusInfoActivity>("id" to item.id)
+                        if(type == R.layout.item_search){
+                            Utils.putHistory(this@MainActivity, item)
+                            setLayout()
+                            getLocation()
+                            when(item.type){
+                                SearchItem.listType.BUS ->{
+                                    startActivity<BusInfoActivity>("id" to item.id)
+                                }
+                                SearchItem.listType.BUSSTOP ->{
+                                    startActivity<BusStopInfoActivity>("id" to item.id)
+                                }
+                            }
+                        }
                     }
                 })
                 .into(mainRecycler)
 
         searchLay.setOnClickListener {
-            startActivity<SearchActivity>()
+            startActivityForResult<SearchActivity>(300)
             overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
         }
     }
@@ -114,6 +131,10 @@ class MainActivity : LocationBaseActivity() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if(requestCode == 200 && resultCode == Activity.RESULT_OK){
+            setLayout()
+            getLocation()
+        }
+        if(requestCode == 300 && resultCode == Activity.RESULT_OK){
             setLayout()
             getLocation()
         }

@@ -1,5 +1,6 @@
 package kr.edcan.buspolis
 
+import android.app.Activity
 import android.databinding.DataBindingUtil
 import android.databinding.ObservableArrayList
 import android.os.Bundle
@@ -65,11 +66,14 @@ class SearchActivity : AppCompatActivity() {
                 }
                 .onClick {
                     var sData = (item as SearchItem)
+                    Utils.putHistory(this@SearchActivity, sData)
+                    setResult(Activity.RESULT_OK)
                     when(sData.type){
                         SearchItem.listType.BUS ->{
                             startActivity<BusInfoActivity>("id" to sData.id)
                         }
                         SearchItem.listType.BUSSTOP ->{
+                            startActivity<BusStopInfoActivity>("id" to sData.id)
                         }
                     }
                 }

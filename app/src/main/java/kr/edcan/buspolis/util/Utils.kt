@@ -1,12 +1,16 @@
 package kr.edcan.buspolis.util
 
 import android.content.Context
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import com.loopj.android.http.AsyncHttpResponseHandler
 import com.loopj.android.http.RequestParams
 import es.dmoral.prefs.Prefs
 import kr.edcan.buspolis.R
 import kr.edcan.buspolis.model.BusStop
 import kr.edcan.buspolis.model.MultiString
+import kr.edcan.buspolis.model.SearchItem
+import java.util.*
 
 /**
  * Created by LNTCS on 2016-10-25.
@@ -106,5 +110,17 @@ object Utils {
     fun loadBS(context: Context) = BusStop(loadMS(context), "00-000")
     fun errMS(context: Context) = MultiString(context, R.string.main_err, R.string.main_err_sub)
     fun errBS(context: Context) = BusStop(errMS(context), "00-000")
-
+    fun putHistory(context: Context, sData: SearchItem) {
+        var hisText = Prefs.with(context).read("searchHistory", "")
+        var history = if(hisText == "") ArrayList<SearchItem>()
+        else Gson().fromJson(hisText,  object: TypeToken<ArrayList<SearchItem>>() {}.type)
+        for(i in 0..history.size-1){
+            if(history[i].id == sData.id) {
+                history.removeAt(i)
+                break
+            }
+        }
+        history.add(sData)
+        Prefs.with(context).write("searchHistory", Gson().toJson(history))
+    }
 }
