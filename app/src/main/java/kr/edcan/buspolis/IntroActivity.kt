@@ -88,7 +88,9 @@ class IntroActivity : AppCompatActivity() {
     }
 
     fun setRealmData(){
-        var pDlg = indeterminateProgressDialog(getString(R.string.wait), getString(R.string.patch))
+        var pDlg = indeterminateProgressDialog(getString(R.string.wait), getString(R.string.patch), {
+            setCancelable(false)
+        })
         var realm = Realm.getDefaultInstance()
         realm.executeTransactionAsync(Realm.Transaction {
             it.createOrUpdateAllFromJson(RM_Station::class.java, loadJSONFromAsset("stations.json", "stations")!!)
