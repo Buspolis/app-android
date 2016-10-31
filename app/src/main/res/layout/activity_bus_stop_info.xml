@@ -2,6 +2,9 @@
 
     <data>
 
+        <variable
+            name="item"
+            type="kr.edcan.buspolis.model.BusStop" />
     </data>
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -17,8 +20,8 @@
         <RelativeLayout
             android:id="@+id/headerBackground"
             android:layout_width="match_parent"
-            android:layout_height="180dp"
-            android:background="#54A953">
+            android:layout_height="140dp"
+            android:background="@color/colorAccent">
 
             <ImageView
                 android:id="@+id/icBack"
@@ -50,32 +53,23 @@
                         android:orientation="vertical">
 
                         <TextView
-                            android:id="@+id/busNumber"
+                            android:id="@+id/stationName"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:ellipsize="end"
-                            android:singleLine="true"
-                            android:text="asdf"
+                            android:maxLines="3"
+                            android:text="@{item.name.localName}"
                             android:textColor="@android:color/white"
-                            android:textSize="@dimen/ex_large_text"
+                            android:textSize="@dimen/label_text"
                             android:textStyle="bold" />
-
-                        <TextView
-                            android:id="@+id/busRouteFirst"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:singleLine="true"
-                            android:text="asdfasdfasdfasdfasdf"
-                            android:textColor="@color/textLight"
-                            android:textSize="@dimen/large_text"
-                            android:textStyle="bold" />
-
                     </LinearLayout>
                 </LinearLayout>
 
                 <RelativeLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent">
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/main_padding"
+                    android:paddingRight="@dimen/main_padding">
 
                     <kr.edcan.buspolis.view.CartaTagView
                         android:id="@+id/busMap"
@@ -83,7 +77,8 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentBottom="true"
                         android:layout_gravity="bottom"
-                        android:layout_margin="@dimen/activity_horizontal_margin"
+                        android:background="@drawable/selector_border"
+                        android:clickable="true"
                         android:paddingBottom="8dp"
                         android:paddingLeft="40dp"
                         android:paddingRight="40dp"
@@ -95,6 +90,7 @@
             </LinearLayout>
 
             <kr.edcan.buspolis.view.CartaTagView
+                android:id="@+id/stationCode"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
@@ -103,6 +99,7 @@
                 android:paddingLeft="@dimen/text_padding"
                 android:paddingRight="@dimen/text_padding"
                 android:paddingTop="2dp"
+                android:text="@{item.code}"
                 android:textSize="@dimen/small_text"
                 android:textStyle="bold"
                 app:fullMode="true"
@@ -120,8 +117,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginBottom="60dp"
-                tools:listitem="@layout/item_bus_info"
-                tools:text="asdf" />
+                tools:listitem="@layout/item_bus_stop_info" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -141,6 +137,8 @@
                     android:layout_width="1dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
+                    android:background="@drawable/selector_border"
+                    android:clickable="true"
                     android:paddingBottom="10dp"
                     android:paddingTop="10dp"
                     android:text="@string/refresh"
@@ -152,6 +150,8 @@
                     android:layout_height="match_parent"
                     android:layout_marginLeft="16dp"
                     android:layout_weight="1"
+                    android:background="@drawable/selector_border"
+                    android:clickable="true"
                     android:paddingBottom="10dp"
                     android:paddingTop="10dp"
                     android:text="@string/bus_fare"

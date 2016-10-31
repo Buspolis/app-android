@@ -5,6 +5,7 @@ import com.loopj.android.http.AsyncHttpResponseHandler
 import com.loopj.android.http.RequestParams
 import es.dmoral.prefs.Prefs
 import kr.edcan.buspolis.R
+import kr.edcan.buspolis.model.MultiString
 
 /**
  * Created by LNTCS on 2016-10-25.
@@ -35,9 +36,11 @@ object Utils {
         "${num.substring(0..1)}-${num.substring(2..4)}"
     }
 
+    fun convertNum(code: String) = code.substring(0..1) + code.substring(3..5)
+
     fun backgroundColor(position: Int): Int {
         val backgroundArr = arrayOf(R.color.busBlue, R.color.busRed, R.color.busGreen, R.color.busBlue, R.color.busGreen, R.color.busYellow, R.color.busRed)
-        val realPosition = if (position > backgroundArr.size) 6 else position
+        val realPosition = if (position >= backgroundArr.size) 6 else position
         return backgroundArr[realPosition]
     }
 
@@ -82,5 +85,19 @@ object Utils {
             }
         }
         return result
+    }
+
+
+    fun getBusType(context: Context, position: Int): MultiString{
+        var busType = arrayListOf(
+                MultiString(context, context.getString(R.string.blue_bus_en),context.getString(R.string.blue_bus_cn),context.getString(R.string.blue_bus_jp)),
+                MultiString(context, context.getString(R.string.red_bus_en),context.getString(R.string.red_bus_cn),context.getString(R.string.red_bus_jp)),
+                MultiString(context, context.getString(R.string.green_bus_en),context.getString(R.string.green_bus_cn),context.getString(R.string.green_bus_jp)),
+                MultiString(context, context.getString(R.string.blue_bus_en),context.getString(R.string.blue_bus_cn),context.getString(R.string.blue_bus_jp)),
+                MultiString(context, context.getString(R.string.green_bus_en),context.getString(R.string.green_bus_cn),context.getString(R.string.green_bus_jp)),
+                MultiString(context, context.getString(R.string.yellow_bus_en),context.getString(R.string.yellow_bus_cn),context.getString(R.string.yellow_bus_jp)),
+                MultiString(context, context.getString(R.string.red_bus_en),context.getString(R.string.red_bus_cn),context.getString(R.string.red_bus_jp))
+        )
+        return if(position > busType.size) busType[6] else busType[position]
     }
 }

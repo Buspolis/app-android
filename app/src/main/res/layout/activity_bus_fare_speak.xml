@@ -73,6 +73,8 @@
                 android:layout_width="0dp"
                 android:layout_height="@dimen/button_height"
                 android:layout_weight="1"
+                android:background="@drawable/selector_border"
+                android:clickable="true"
                 android:text="@string/close"
                 app:fullMode="false"
                 app:themeColor="@android:color/white" />

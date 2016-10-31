@@ -4,7 +4,8 @@
 
         <variable
             name="item"
-            type="kr.edcan.buspolis.model.BusStop" />
+            type="kr.edcan.buspolis.model.ComingBus" />
+        <import type="android.view.View"/>
     </data>
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -23,20 +24,11 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/stationName"
+                android:id="@+id/busNumber"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="asdf"
-                android:textColor="@color/textNormal"
+                android:text="@{item.num}"
                 android:textSize="@dimen/label_text" />
-
-            <TextView
-                android:id="@+id/stationNameSub"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="asdf"
-                android:textColor="@color/colorTextSub"
-                android:textSize="@dimen/large_text" />
         </LinearLayout>
 
         <LinearLayout
@@ -47,7 +39,7 @@
             android:orientation="horizontal">
 
             <kr.edcan.buspolis.view.CartaTagView
-                android:id="@+id/busStationLeft"
+                android:id="@+id/busRemainStat"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
@@ -58,18 +50,19 @@
                 android:paddingRight="10dp"
                 android:paddingTop="5dp"
                 android:textSize="@dimen/small_text"
+                android:text='@{item.remainStat + " away"}'
+                android:visibility='@{(item.remainStat.equals(""))? View.GONE: View.VISIBLE}'
                 app:textThemeColor="@color/textNormal"
                 app:textThemeColorEnabled="true"
                 app:themeColor="#54A953" />
 
             <TextView
-                android:id="@+id/busStatus"
+                android:id="@+id/busRemainStatus"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
-                android:text="Soon"
-                android:textColor="@color/textRed"
+                android:text="@{item.remainTime}"
                 android:textStyle="bold" />
 
         </LinearLayout>

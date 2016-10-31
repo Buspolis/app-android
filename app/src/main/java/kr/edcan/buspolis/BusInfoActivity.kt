@@ -101,7 +101,8 @@ class BusInfoActivity : AppCompatActivity() {
                 })
                 .onClickListener(object: LastAdapter.OnClickListener{
                     override fun onClick(item: Any, view: View, type: Int, position: Int) {
-                        startActivity<BusStopInfoActivity>()
+                        if(item is BusStop)
+                            startActivity<BusStopInfoActivity>("name" to item.name.ko, "id" to item.id)
                     }
                 })
                 .into(busInfoRecyclerView)

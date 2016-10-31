@@ -33,15 +33,6 @@ class SearchActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         DataBindingUtil.setContentView<ActivitySearchBinding>(this, R.layout.activity_search)
         realm = Realm.getDefaultInstance()
-        busType = arrayListOf(
-                MultiString(this, getString(R.string.blue_bus_en),getString(R.string.blue_bus_cn),getString(R.string.blue_bus_jp)),
-                MultiString(this, getString(R.string.red_bus_en),getString(R.string.red_bus_cn),getString(R.string.red_bus_jp)),
-                MultiString(this, getString(R.string.green_bus_en),getString(R.string.green_bus_cn),getString(R.string.green_bus_jp)),
-                MultiString(this, getString(R.string.blue_bus_en),getString(R.string.blue_bus_cn),getString(R.string.blue_bus_jp)),
-                MultiString(this, getString(R.string.green_bus_en),getString(R.string.green_bus_cn),getString(R.string.green_bus_jp)),
-                MultiString(this, getString(R.string.yellow_bus_en),getString(R.string.yellow_bus_cn),getString(R.string.yellow_bus_jp)),
-                MultiString(this, getString(R.string.red_bus_en),getString(R.string.red_bus_cn),getString(R.string.red_bus_jp))
-        )
         setLayout()
     }
 
@@ -64,7 +55,7 @@ class SearchActivity : AppCompatActivity() {
                     when(sData.type){
                         SearchItem.listType.BUS ->{
                             keyword.textColor = ContextCompat.getColor(this@SearchActivity, Utils.backgroundColor(sData.option))
-                            sub.text = getBusType(sData.option).getLocalName()
+                            sub.text = Utils.getBusType(this@SearchActivity, sData.option).getLocalName()
                         }
                         SearchItem.listType.BUSSTOP ->{
                             keyword.textColor = ContextCompat.getColor(this@SearchActivity, R.color.textNormal)
@@ -106,7 +97,6 @@ class SearchActivity : AppCompatActivity() {
             }
         })
     }
-    fun getBusType(position: Int) = if(position > busType.size) busType[6] else busType[position]
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         when(item!!.itemId){

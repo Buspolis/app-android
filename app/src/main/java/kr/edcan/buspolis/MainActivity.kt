@@ -3,6 +3,7 @@ package kr.edcan.buspolis
 import android.databinding.ObservableArrayList
 import android.location.Location
 import android.os.Bundle
+import android.support.v4.content.ContextCompat
 import android.support.v7.widget.LinearLayoutManager
 import android.view.Menu
 import android.view.MenuItem
@@ -24,6 +25,7 @@ import kr.edcan.buspolis.model.SearchItem
 import kr.edcan.buspolis.util.Utils
 import org.jetbrains.anko.find
 import org.jetbrains.anko.startActivity
+import org.jetbrains.anko.textColor
 import org.json.XML
 
 class MainActivity : LocationBaseActivity() {
@@ -59,6 +61,22 @@ class MainActivity : LocationBaseActivity() {
                     if (item is BusStop){
                         view.find<TextView>(R.id.refreshNear).setOnClickListener {
                             getLocation()
+                        }
+                    }
+                    if(item is SearchItem){
+                        var keyword = view.find<TextView>(R.id.searchKeyword)
+                        var sub = view.find<TextView>(R.id.searchSub)
+                        var sData = (item as SearchItem)
+
+                        when(sData.type){
+                            SearchItem.listType.BUS ->{
+                                keyword.textColor = ContextCompat.getColor(this@MainActivity, Utils.backgroundColor(sData.option))
+                                sub.text = Utils.getBusType(this@MainActivity, sData.option).getLocalName()
+                            }
+                            SearchItem.listType.BUSSTOP ->{
+                                keyword.textColor = ContextCompat.getColor(this@MainActivity, R.color.textNormal)
+                                sub.text = sData.num
+                            }
                         }
                     }
                 }
