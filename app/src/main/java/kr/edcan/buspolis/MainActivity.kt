@@ -140,7 +140,10 @@ class MainActivity : LocationBaseActivity() {
         }
     }
 
+    var inGetLocation = false
     override fun onLocationChanged(location: Location) {
+        if(inGetLocation) return
+        inGetLocation = true
         Utils.getNearStop(location.longitude, location.latitude, object : AsyncHttpResponseHandler() {
             override fun onSuccess(statusCode: Int, headers: Array<out Header>?, responseBody: ByteArray) {
                 val result = XML.toJSONObject(String(responseBody)).getJSONObject("ServiceResult")
@@ -151,10 +154,12 @@ class MainActivity : LocationBaseActivity() {
                     var item = result.getJSONObject("msgBody").getJSONArray("itemList").getJSONObject(0)
                     var station = Realm.getDefaultInstance().where(RM_Station::class.java).equalTo("id", item.getInt("stationId")).findFirst()
                     sList[0] = BusStop(this@MainActivity, station)
+                    inGetLocation = false
                 }
             }
             override fun onFailure(statusCode: Int, headers: Array<out Header>?, responseBody: ByteArray?, error: Throwable?) {
                 sList[0] = Utils.errBS(this@MainActivity)
+                inGetLocation = false
             }
         })
         mainRecycler.adapter.notifyDataSetChanged()
@@ -168,7 +173,7 @@ class MainActivity : LocationBaseActivity() {
                 .keepTracking(true)
                 .askForGooglePlayServices(true)
                 .setMinAccuracy(200.0f)
-                .setTimeInterval((Prefs.with(this).readInt("autoRef", 3000) * 1000).toLong())
+                .setTimeInterval((Prefs.with(this).readInt("autoRef", 30) * 1000).toLong())
                 .setWaitPeriod(ProviderType.GOOGLE_PLAY_SERVICES, 5 * 1000)
                 .setWaitPeriod(ProviderType.GPS, 10 * 1000)
                 .setWaitPeriod(ProviderType.NETWORK, 5 * 1000)

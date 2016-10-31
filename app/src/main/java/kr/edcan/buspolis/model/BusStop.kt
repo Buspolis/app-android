@@ -25,11 +25,13 @@ class BusStop{
     }
 
     var helpListener = View.OnClickListener{
-        it.context.startActivity<HelpActivity>("name" to name.ko, "id" to id)
+        if(id != 0)
+            it.context.startActivity<HelpActivity>("name" to name.ko, "id" to id)
     }
 
     var infoListener = View.OnClickListener{
-        it.context.startActivity<BusStopInfoActivity>("id" to id)
+        if(id != 0)
+            it.context.startActivity<BusStopInfoActivity>("id" to id)
     }
 
     constructor(context: Context, station: RM_Station){
