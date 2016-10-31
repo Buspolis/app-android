@@ -58,7 +58,7 @@ class BusStop{
                         }
                     }
                     val sendIntent = Intent()
-                    msg += "\nhttps://www.google.co.kr/maps/$y,$x,17z"
+                    msg += "\nhttps://www.google.co.kr/maps/@$y,$x,17z"
                     sendIntent.putExtra(Intent.EXTRA_TEXT, msg)
                     sendIntent.action = Intent.ACTION_SEND
                     sendIntent.type = "text/plain"
