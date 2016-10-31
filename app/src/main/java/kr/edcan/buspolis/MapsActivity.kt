@@ -29,8 +29,9 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         title = getString(R.string.title_activity_maps)
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
 
-        help.setOnClickListener {
-            startActivity<HelpActivity>("name_ko" to intent.getStringExtra("nameKo"), "id" to intent.getIntExtra("id", 0))
+        mapHelp.setOnClickListener {
+            startActivity<HelpActivity>("name" to intent.getStringExtra("name_ko"), "id" to intent.getIntExtra("id", 0)
+            )
         }
     }
 

@@ -35,7 +35,7 @@
         android:weightSum="2">
 
         <kr.edcan.buspolis.view.CartaTagView
-            android:id="@+id/help"
+            android:id="@+id/mapHelp"
             android:layout_width="0dp"
             android:layout_height="@dimen/button_height"
             android:layout_weight="1"
