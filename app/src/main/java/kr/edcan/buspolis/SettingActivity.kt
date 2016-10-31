@@ -1,7 +1,9 @@
 package kr.edcan.buspolis
 
 import android.app.Activity
+import android.content.Intent
 import android.databinding.DataBindingUtil
+import android.net.Uri
 import android.os.Bundle
 import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
@@ -43,9 +45,9 @@ class SettingActivity : AppCompatActivity(), LastAdapter.OnClickListener {
             add(ListContent(getString(R.string.setting_lang),
                     getString(R.string.setting_lang_sub),
                     getLangString()))
-            add(getString(R.string.setting_term))
-            add(ListContent(getString(R.string.setting_tos)))
-            add(ListContent(getString(R.string.setting_osl)))
+//            add(getString(R.string.setting_term))
+//            add(ListContent(getString(R.string.setting_tos)))
+//            add(ListContent(getString(R.string.setting_osl)))
             add(getString(R.string.setting_about))
             add(ListContent(getString(R.string.setting_ver),
                     "",getVersion()))
@@ -113,14 +115,16 @@ class SettingActivity : AppCompatActivity(), LastAdapter.OnClickListener {
                     settingsRecycler.adapter.notifyDataSetChanged()
                 }
             }
-            4 ->{ //ToS
-
-            }
-            5 ->{ //OSL
-
-            }
-            8 ->{ //contact
-
+//            4 ->{ //ToS
+//
+//            }
+//            5 ->{ //OSL
+//
+//            }
+            5 ->{ //contact
+                val uri = Uri.parse("mailto:lntcs.dev@gmail.com")
+                val it = Intent(Intent.ACTION_SENDTO, uri)
+                startActivity(it)
             }
         }
     }
