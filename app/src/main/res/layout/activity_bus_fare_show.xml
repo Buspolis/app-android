@@ -75,7 +75,6 @@
                     android:layout_height="match_parent"
                     android:gravity="bottom"
                     android:paddingBottom="@dimen/small_margin"
-                    android:text="asdf"
                     android:textColor="@android:color/white"
                     android:textSize="@dimen/large_text" />
             </LinearLayout>

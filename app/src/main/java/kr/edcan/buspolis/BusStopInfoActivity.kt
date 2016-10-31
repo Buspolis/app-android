@@ -59,7 +59,7 @@ class BusStopInfoActivity : AppCompatActivity() {
                 }
                 .onClickListener(object : LastAdapter.OnClickListener {
                     override fun onClick(item: Any, view: View, type: Int, position: Int) {
-
+                        startActivity<BusInfoActivity>("id" to (item as ComingBus).id)
                     }
                 })
                 .into(busStopInfoRecyclerView)
