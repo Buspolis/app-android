@@ -89,7 +89,7 @@ class SearchActivity : AppCompatActivity() {
                 for( bus in realm.where(RM_Bus::class.java).contains("num", s.toString()).findAll() ){
                     sList.add(SearchItem(bus.id, bus.num, SearchItem.listType.BUS, bus.type))
                 }
-                for( rmSt in realm.where(RM_Station::class.java).contains("name", s.toString()).or().contains("name_en", s.toString()).or().contains("name_cn", s.toString()).or().contains("name_jp", s.toString()).findAll() ){
+                for( rmSt in realm.where(RM_Station::class.java).contains("name", s.toString()).or().contains("name_en", s.toString()).or().contains("name_cn", s.toString()).or().contains("name_jp", s.toString()).or().contains("num", s.toString()).findAll() ){
                     var station = BusStop(this@SearchActivity, rmSt)
                     sList.add(SearchItem(station.id, station.name.getLocalName(), SearchItem.listType.BUSSTOP, station.code))
                 }
