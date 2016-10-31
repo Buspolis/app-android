@@ -1,5 +1,6 @@
 package kr.edcan.buspolis
 
+import android.app.Activity
 import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.support.v4.content.ContextCompat
@@ -92,14 +93,25 @@ class SettingActivity : AppCompatActivity(), LastAdapter.OnClickListener {
     override fun onClick(item: Any, view: View, type: Int, position: Int) {
         when(position){
             1 ->{ //auto
-                selector(getString(R.string.setting_refresh), listOf("15s", "30s", "60s"), onClick = {
-                    //TODO 수정
-                })
+                selector(getString(R.string.setting_refresh), listOf("15s", "30s", "60s")){i ->
+                    var secs = arrayOf(15, 30, 60)
+                    Prefs.with(this@SettingActivity).writeInt("autoRef", secs[i])
+                    arrayList[1] = ListContent(getString(R.string.setting_refresh),
+                            getString(R.string.setting_refresh_sub),
+                            "${Prefs.with(this@SettingActivity).readInt("autoRef", 30)}s")
+                    settingsRecycler.adapter.notifyDataSetChanged()
+                }
             }
             2 ->{ //lang
-                selector(getString(R.string.setting_refresh), listOf("ENG", "中文", "日本語"), onClick = {
-                    //TODO 수정
-                })
+                selector(getString(R.string.setting_refresh), listOf("ENG", "中文", "日本語")){i ->
+                    var langs = arrayOf("en", "cn", "jp")
+                    Prefs.with(this).write("lang", langs[i])
+                    arrayList[2] = ListContent(getString(R.string.setting_lang),
+                            getString(R.string.setting_lang_sub),
+                            getLangString())
+                    setResult(Activity.RESULT_OK)
+                    settingsRecycler.adapter.notifyDataSetChanged()
+                }
             }
             4 ->{ //ToS
 

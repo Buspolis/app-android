@@ -1,5 +1,7 @@
 package kr.edcan.buspolis
 
+import android.app.Activity
+import android.content.Intent
 import android.databinding.ObservableArrayList
 import android.location.Location
 import android.os.Bundle
@@ -25,6 +27,7 @@ import kr.edcan.buspolis.model.SearchItem
 import kr.edcan.buspolis.util.Utils
 import org.jetbrains.anko.find
 import org.jetbrains.anko.startActivity
+import org.jetbrains.anko.startActivityForResult
 import org.jetbrains.anko.textColor
 import org.json.XML
 
@@ -40,6 +43,7 @@ class MainActivity : LocationBaseActivity() {
 
     private fun setLayout() {
         setSupportActionBar(toolbar)
+        sList.clear()
         title = ""
         MultiString(this, "Where are you going?", "你去哪里?", "どこに行くの？").let {
             toolbarTitle.text = it.getLocalName()
@@ -102,11 +106,17 @@ class MainActivity : LocationBaseActivity() {
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         when (item!!.itemId) {
             R.id.mainSettings -> {
-                startActivity<SettingActivity>()
+                startActivityForResult<SettingActivity>(200)
             }
-
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        if(requestCode == 200 && resultCode == Activity.RESULT_OK){
+            setLayout()
+            getLocation()
+        }
     }
 
     override fun onLocationChanged(location: Location) {
